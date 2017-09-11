@@ -1,0 +1,1342 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevComponents.DotNetBar.Keyboard</name>
+    </assembly>
+    <members>
+        <member name="T:DevComponents.DotNetBar.Keyboard.Key">
+            <summary>
+            Holds information about a single virtual keyboard Key.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Key.#ctor(System.String,System.String,System.String,DevComponents.DotNetBar.Keyboard.KeyStyle,System.Int32,System.Int32)">
+            <summary>
+            Creates a new Key object.
+            </summary>
+            <param name="caption">The text displayed on the key.</param>
+            <param name="info">The information that will be sent to the attached control.</param>
+            <param name="hint">The text in the upper part of the key, that provides a hint for the user about what the key does.</param>
+            <param name="style">The way the key looks.</param>
+            <param name="changeToLayout">The index of the layout to switch to.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Key.ToString">
+            <summary>
+            Returns a string that represents the current Key.
+            </summary>
+            <returns>A string that represents the current Key.</returns>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Key.Caption">
+            <summary>
+            Gets the caption on the key.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Key.Info">
+            <summary>
+            Gets the actual key-information that is sent to the attached control. The format of this information
+            must confirm to the description for the SendKeys.Send function. For more details, see:
+            http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Key.Bounds">
+            <summary>
+            Gets the bounds of the key.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Key.Style">
+            <summary>
+            Gets a value representing the way the key looks on the virtual keyboard. A key might look normal, 
+            lighter, darker or with a pressed effect.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Key.ChangeToLayout">
+            <summary>
+            Gets the index of the layout to change to, if this key is pressed. A positive value represents a new layout.
+            KeyboardLayout.NoChange and KeyboardLayout.PreviousLayout constants can also be used with special meaning.
+            </summary>
+            <remarks>
+            If this is a positive integer ( >= 0 ), it represents the index of the layout to switch to when this key 
+            is pressed. In this case, the keyboard does not send any key information to the attached control (the Info
+            field is ignored), only changes the layout.
+            
+            If this is KeyboardLayout.NoChange the keyboard will send the info to the attached control.
+            
+            If this is KeyboardLayout.PreviousLayout the keyboard will switch to the previous set layout. The keyboard
+            maintains internally a stack of all used layouts. If no more layouts in the stakc, the keyboard switches to
+            the layout with index 0.
+            </remarks>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Key.ChangeToLayoutEx">
+            <summary>
+            Gets the index of the layout to change to, when this key is double clicked. A positive value represents a new layout.
+            KeyboardLayout.NoChange and KeyboardLayout.PreviousLayout constants can also be used with special meaning.
+            </summary>
+            <remarks>
+            If this is a positive integer ( >= 0 ), it represents the index of the layout to switch to when this key 
+            is pressed. In this case, the keyboard does not send any key information to the attached control (the Info
+            field is ignored), only changes the layout.
+            
+            If this is KeyboardLayout.NoChange the keyboard will send the info to the attached control.
+            
+            If this is KeyboardLayout.PreviousLayout the keyboard will switch to the previous set layout. The keyboard
+            maintains internally a stack of all used layouts. If no more layouts in the stakc, the keyboard switches to
+            the layout with index 0.
+            </remarks>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Key.Hint">
+            <summary>
+            Gets the text that will be displayed in the upper part of the keyboard, as a hint for what the key does,
+            usually in combination with a modifier key (e.g. Underline, Undo, etc).
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyStyle">
+            <summary>
+            Specifies the way a key looks, specifically what color it uses from the ColorTable.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyStyle.Normal">
+            <summary>
+            Key should be drawn as a normal key colors.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyStyle.Light">
+            <summary>
+            Key should be drawn with lighter colors.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyStyle.Dark">
+            <summary>
+            Key should be drawn with darker colors.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyStyle.Pressed">
+            <summary>
+            Key should be drawn with the pressed color.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyStyle.Toggled">
+            <summary>
+            Key should be drawn with the toggled color.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyboardLayout">
+            <summary>
+            Represents a layout for a virtual keyboard.
+            </summary>
+            The Keys have coordinates in the KeyboardLayout specified in logical layout units. By default for this version
+            of the control, a normal key is 10 logical units (LUs) width and 10 LUs height. A space between two keys is 1 LU.
+            When rendering, we assume the whole Layout is stretched over the Keyboard control, so we need to change from 
+            LUs (ranging from 0 to layout.LogicalWidth) to pixels (ranging from 0 to control.Width).
+            This allows the layout to be resized to almost any sizes.
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyboardLayout.PreviousLayout">
+            <summary>
+            Indicates that a key should switch the Keyboard to the previous layout.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyboardLayout.NoChange">
+            <summary>
+            Indicates that a key does not switch to any layout.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardLayout.KeyHitTest(System.Int32,System.Int32)">
+            <summary>
+            Tests if a certain point hits a key on the virtual keyboard.
+            </summary>
+            <param name="x">The x-coordinate of the hit point (in logical units of this KeyboardLayout)</param>
+            <param name="y">The y-coordinate of the hit point (in logical units of this KeyboardLayout)</param>
+            <returns>Returns the key that was hit, or null if the point didn't hit any keys.</returns>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardLayout.Keys">
+            <summary>
+            Gets the collection of the Keys in this KeyboardLayout.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardLayout.LogicalWidth">
+            <summary>
+            Gets the logical width of this KeyboardLayout.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardLayout.LogicalHeight">
+            <summary>
+            Gets the logical height of this KeyboardLayout.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.LinearKeyboardLayout">
+             <summary>
+             Represents a layout for a virtual keyboard in which keys are defined in a linear way. This class
+             allows creation of layouts in which keys can be ordered from left to right and from top to bottom.
+             </summary>
+             <remarks>
+             With the linear layout, the keys are allowed to have any width. The height, however, must be the same.
+             This layout is build by adding to it spaces, keys and new lines.
+             A key represents a virtual key AND a space after it.
+             A space represents a placeholder between two keys and it is used when there is need for a larger space
+             between two certain keys
+             A new line represents the fact that a new line of keys should be defined.
+             </remarks>
+             <example>
+             The default virtual keyboard of the VirtualKeyboard control is defined in the following way:
+             <code>
+             AddKey("q");
+             AddKey("w");
+             AddKey("e");
+             // ...
+             AddKey("p");
+             AddKey("Backspace");
+            
+             AddLine(); // Starts a new row of keys.
+             AddSpace(4); // Creates a larger space at the beginning of the second row.
+            
+             AddKey("a");
+             AddKey("s");
+             // ...
+             </code>
+             </example>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.LinearKeyboardLayout.SpaceSize">
+            <summary>
+            The logical size of the space between two keys.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.LinearKeyboardLayout.NormalKeySize">
+            <summary>
+            The logical size of a key.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.LinearKeyboardLayout.AddSpace(System.Int32)">
+            <summary>
+            Adds a space to this LinearKeyboardLayout.
+            </summary>
+            <param name="width">The size of the space, in logical units.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.LinearKeyboardLayout.AddLine">
+            <summary>
+            Starts a new row of keys in this LinearKeyboardLayout.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.LinearKeyboardLayout.AddKey(System.String,System.String,System.String,System.Int32,System.Int32,DevComponents.DotNetBar.Keyboard.KeyStyle,System.Int32,System.Int32)">
+            <summary>
+            Adds a new key to this LinearKeayboardLayout.
+            </summary>
+            <param name="caption">The text displayed on the key.</param>
+            <param name="info">The information that will be sent to the attached control.</param>
+            <param name="hint">The text in the upper part of the key, that provides a hint for the user about what the key does.</param>
+            <param name="width">The width of the key, in logical units.</param>
+            <param name="height">The height of the key, in logical units.</param>
+            <param name="style">The way the key looks.</param>
+            <param name="changeToLayout">The index of the layout to switch to.</param>
+            <param name="changeToLayoutEx">The index of the layout to switch to, when key is double clicked.</param>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.Keyboard">
+            <summary>
+            Represents a Virtual Keyboard.
+            </summary>
+            Each Keyboard has a collection of KeyboardLayout objects. The Keyboard also maintains the current Layout among all its layouts.
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Keyboard.ChangeToPreviousLayout">
+            <summary>
+            Switches the Keyboard to the previous layout.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Keyboard.ResetLayoutStack">
+            <summary>
+            Switches the Keyboard to the first layout and resets the layout stack.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Keyboard.CreateDefaultKeyboard">
+            <summary>
+            Creates the default Keyboard populated with common layouts and functionality.
+            </summary>
+            <returns>A new Keyboard instance representing a default keyboard.</returns>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Keyboard.Layouts">
+            <summary>
+            Gets the collection of the keyboard layouts in this Keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Keyboard.CurrentLayoutIndex">
+            <summary>
+            Gets or sets the current layout index of this Keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Keyboard.CurrentLayout">
+            <summary>
+            Gets the current layout of this Keyboard.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeysCollection">
+            <summary>
+            Contains a collection of Key objects.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyboardLayoutsCollection">
+            <summary>
+            Contains a collection of KeyboardLayout objects.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.PopupVirtualKeyboard.#ctor">
+            <summary>
+            Creates a new floating virtual keyboard.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.Renderer">
+            <summary>
+            Represents a renderer for a VirtualKeyboard.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Renderer.DrawTopBar(DevComponents.DotNetBar.Keyboard.TopBarRendererEventArgs)">
+            <summary>
+            Draws the top bar of the VirtualKeyboard.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Renderer.DrawBackground(DevComponents.DotNetBar.Keyboard.BackgroundRendererEventArgs)">
+            <summary>
+            Draws the background of the VirtualKeyboard.
+            </summary>
+            <param name="args">Provides context information.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Renderer.DrawKey(DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs)">
+            <summary>
+            Draws a key of the VirtualKeyboard.
+            </summary>
+            <param name="args">Provides context information.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Renderer.BeginFrame(DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs)">
+            <summary>
+            Called when the control starts rendering a new frame.
+            </summary>
+            <param name="args">Provides context information.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.Renderer.EndFrame">
+            <summary>
+            Called after the control finished rendering the frame.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.Renderer.ColorTable">
+            <summary>
+            Gets or sets the ColorTable used by this renderer to render the virtual keyboard.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.FlatStyleRenderer">
+            <summary>
+            Represents a VirtualKeyboard renderer with a flat style.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.FlatStyleRenderer.BeginFrame(DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs)">
+            <summary>
+            Starts rendering a new frame with the black style. This gives the renderer a chance to cash some resources.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.FlatStyleRenderer.EndFrame">
+            <summary>
+            Ends rendering a new frame with the black style. This gives the renderer a chance to free resources used during the frame.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.FlatStyleRenderer.#ctor">
+            <summary>
+            Creates a new renderer for the black style.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.FlatStyleRenderer.DrawBackground(DevComponents.DotNetBar.Keyboard.BackgroundRendererEventArgs)">
+            <summary>
+            Draws the background of a VirtualKeyboard.
+            </summary>
+            <param name="args">Provides context information.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.FlatStyleRenderer.DrawKey(DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs)">
+            <summary>
+            Draws the key of a VirtualKeyboard.
+            </summary>
+            <param name="args">Provides context information.</param>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.FlatStyleRenderer.ForceAntiAlias">
+            <summary>
+            Gets or sets whether anti-alias smoothing is used while painting. Default value is true.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs">
+            <summary>
+            Provides data for Key rendering.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs.#ctor(System.Drawing.Graphics,DevComponents.DotNetBar.Keyboard.Key,System.Boolean,System.Drawing.Rectangle,System.Drawing.Rectangle)">
+            <summary>
+            Creates a new instance and initializes it with provided values.
+            </summary>
+            <param name="graphics">The Graphics object to be used for rendering.</param>
+            <param name="key">The Key instance being rendered.</param>
+            <param name="isDown">Indicates if the key is currently hold down.</param>
+            <param name="clipRectangle">The rectangle in which to paint.</param>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs.Key">
+            <summary>
+            Gets a reference to the Key instance being rendered.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs.Graphics">
+            <summary>
+            Gets a reference to the Graphics object to be used for rendering.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs.IsDown">
+            <summary>
+            Gets a value indicating if this key is currently down.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyRendererEventArgs.ClipRectangle">
+            <summary>
+            Gets the rectangle in which to paint.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.BackgroundRendererEventArgs">
+            <summary>
+            Provides data for rendering the background of a VirtualKeyboard.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.BackgroundRendererEventArgs.#ctor(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Rectangle)">
+            <summary>
+            Creates a new instance and initializes it with provided values.
+            </summary>
+            <param name="graphics">The Graphics object to be used for rendering.</param>
+            <param name="size">The area where the background should be drawn.</param>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.BackgroundRendererEventArgs.Graphics">
+            <summary>
+            Gets a reference to the Graphics object to be used for rendering.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.BackgroundRendererEventArgs.ClipRectangle">
+            <summary>
+            Gets the rectangle in which to paint.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs.#ctor(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Rectangle,System.Drawing.Font,DevComponents.DotNetBar.Keyboard.KeyboardLayout)">
+            <summary>
+            Creates a new instance and initializes it with provided values.
+            </summary>
+            <param name="size">The size of the background area.</param>
+            <param name="font">The font of the control.</param>
+            <param name="layout">The current KeyboardLayout that will be rendered in this frame.</param>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs.Graphics">
+            <summary>
+            Gets a reference to the Graphics object to be used for rendering.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs.ClipRectangle">
+            <summary>
+            Gets the rectangle in which to paint.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs.Bounds">
+            <summary>
+            Gets the size of the background area in which to render the keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs.Font">
+            <summary>
+            Gets the font on the control.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.BeginFrameRendererEventArgs.Layout">
+            <summary>
+            Gets the current KeyboardLayout which will be rendered in this frame.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TopBarRendererEventArgs.Graphics">
+            <summary>
+            Gets a reference to the Graphics object to be used for rendering.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TopBarRendererEventArgs.ClipRectangle">
+            <summary>
+            Gets the rectangle in which to paint.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TopBarRendererEventArgs.Font">
+            <summary>
+            Gets the font on the control.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.CloseButtonRendererEventArgs.Graphics">
+            <summary>
+            Gets a reference to the Key instance being rendered.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.CloseButtonRendererEventArgs.ClipRectangle">
+            <summary>
+            Gets the area where background should be drawn.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.CloseButtonRendererEventArgs.IsDown">
+            <summary>
+            Gets a value indicating if this key is currently down.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.OnSendingKey(DevComponents.DotNetBar.Keyboard.KeyboardKeyCancelEventArgs)">
+            <summary>
+            Raises SendingKey event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.OnKeySent(DevComponents.DotNetBar.Keyboard.KeyboardKeyEventArgs)">
+            <summary>
+            Raises KeySent event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.AttachTo(System.Windows.Forms.Control)">
+            <summary>
+            Attaches the Keyboard to the specified control. The keyboard will automatically appear when the control receives input focus.
+            </summary>
+            <param name="control">The control to which the Keyboard will be attached.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.DetachFrom(System.Windows.Forms.Control)">
+            <summary>
+            Detaches the Keyboard from the specified control.
+            </summary>
+            <param name="control">The control from which the Keyboard will be detached.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.OnKeyboardOpening(DevComponents.DotNetBar.Keyboard.CancelKeyboardEventArgs)">
+            <summary>
+            Raises KeyboardOpening event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.OnKeyboardOpened(System.EventArgs)">
+            <summary>
+            Raises KeyboardOpened event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.OnKeyboardClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Raises KeyboardClosing event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.OnKeyboardClosed(System.EventArgs)">
+            <summary>
+            Raises KeyboardClosed event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.HideKeyboard">
+            <summary>
+            Hides the keyboard.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.GetShowTouchKeyboard(System.Windows.Forms.Control)">
+            <summary>
+            Retursn the way the keyboard will be shown when controls receive focus.
+            </summary>
+            <param name="extendee">The control for which to retrieve the value.</param>
+            <returns>A TouchKeyboardStyle value defining the way the keyboard appears.</returns>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.SetShowTouchKeyboard(System.Windows.Forms.Control,DevComponents.DotNetBar.Keyboard.TouchKeyboardStyle)">
+            <summary>
+            Sets the way the keyboard will be shown when controls receive focus. If the control is a Form,
+            all controls on the Form will support this way of displaying the touch keyboard.
+            </summary>
+            <param name="extendee">The control for which this value is specified.</param>
+            <param name="value">A TouchKeyboardStyle value defining the way the keyboard appears.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.TouchKeyboard.OnTextChanged">
+            <summary>
+            Raises the TextChanged event.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.SendingKey">
+            <summary>
+            Occurs before the key pressed on keyboard is sent to target control and allows cancellation of the message
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.KeySent">
+            <summary>
+            Occurs after the key is sent to target control.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.KeyboardControl">
+            <summary>
+            Gets the reference to internal keyboard control that is used to provide Keyboard visual.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.KeyboardOpening">
+            <summary>
+            Occurs before keyboard is shown and allows canceling of opening.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.KeyboardOpened">
+            <summary>
+            Occurs after keyboard is shown.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.CurrentKeyboardTarget">
+            <summary>
+            Gets keyboard target control.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.KeyboardClosing">
+            <summary>
+            Occurs before the keyboard is closed and allows canceling of keyboard closing.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.KeyboardClosed">
+            <summary>
+            Occurs after keyboard is closed.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.ColorTable">
+            <summary>
+            Gets or set the ColorTable used to draw the keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.Renderer">
+            <summary>
+            Gets or set the Renderer used to draw the keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.Size">
+            <summary>
+            Gets or sets the size of the keyboard, when shown inline.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.Location">
+            <summary>
+            Gets or sets the coordinates of the upper-left corner of the keyboard when shown inline, relative to the form.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.Dock">
+            <summary>
+            Defines which borders of the keyboard are bound to the container.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.FloatingLocation">
+            <summary>
+            Gets or sets the coordinates of the upper-left corner of the keyboard when shown floating, relative to the screen.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.TouchEnabled">
+            <summary>
+            Indicates whether touch support is enabled when provided by hardware.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.FloatingSize">
+            <summary>
+            Gets or sets the size of the keyboard, when shown floating.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.TouchKeyboard.Text">
+            <summary>
+            Gets or sets a text associated with this control.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.TextChanged">
+            <summary>
+            Occurs when the Text property has changed.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.SizeChanged">
+            <summary>
+            Occurs when the Size property has changed.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.LocationChanged">
+            <summary>
+            Occurs when the Location property has changed.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.DockChanged">
+            <summary>
+            Occurs when the Dock property has changed.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.FloatingSizeChanged">
+            <summary>
+            Occurs when the FloatingSize property has changed.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.TouchKeyboard.FloatingLocationChanged">
+            <summary>
+            Occurs when the FloatingLocation property has changed.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.TouchKeyboardStyle">
+            <summary>
+            Defines the way the touch keyboard will appear when attached to controls.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.TouchKeyboardStyle.No">
+            <summary>
+            Touch keyboard will not be visible.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.TouchKeyboardStyle.Inline">
+            <summary>
+            Touch keyboard will appear inline in the form.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.TouchKeyboardStyle.Floating">
+            <summary>
+            Touch keyboard will appear floating on the screen.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.CancelKeyboardEventHandler">
+            <summary>
+            Defines delegate for keyboard events.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.CancelKeyboardEventArgs">
+            <summary>
+            Defines event arguments for keyboard based events.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.CancelKeyboardEventArgs.#ctor(System.Windows.Forms.Control,DevComponents.DotNetBar.Keyboard.TouchKeyboardStyle)">
+            <summary>
+            Initializes a new instance of the CancelKeyboardEventArgs class.
+            </summary>
+            <param name="targetControl"></param>
+            <param name="style"></param>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.CancelKeyboardEventArgs.TargetControl">
+            <summary>
+            Gets or sets the keyboard target control.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.CancelKeyboardEventArgs.Style">
+            <summary>
+            Gets or sets the keyboard style.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnPanBegin(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises PanBegin event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnPanEnd(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises PanBegin event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnPan(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises PanBegin event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnBegin(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises Begin event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnEnd(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises End event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnPressAndTap(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises PressAndTap event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnRotateBegin(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises RotateBegin event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnRotate(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises Rotate event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnRotateEnd(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises RotateEnd event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnTwoFingerTap(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises TwoFingerTap event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnZoomBegin(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises ZoomBegin event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnZoom(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises Zoom event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnZoomEnd(DevComponents.DotNetBar.Touch.GestureEventArgs)">
+            <summary>
+            Raises ZoomEnd event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnTouchDown(DevComponents.DotNetBar.Touch.TouchEventArgs)">
+            <summary>
+            Raises TouchDown event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnTouchUp(DevComponents.DotNetBar.Touch.TouchEventArgs)">
+            <summary>
+            Raises TouchDown event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.OnTouchMove(DevComponents.DotNetBar.Touch.TouchEventArgs)">
+            <summary>
+            Raises TouchDown event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.#ctor(System.Windows.Forms.Control)">
+            <summary>
+            Initializes a new instance of the TouchHandler class.
+            </summary>
+            <param name="parentControl"></param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.#ctor(System.Windows.Forms.Control,DevComponents.DotNetBar.Touch.eTouchHandlerType)">
+            <summary>
+            Initializes a new instance of the TouchHandler class.
+            </summary>
+            <param name="parentControl"></param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.Initialize">
+            <summary>
+            Initializes handler
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.WindowProc(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            The Windows message handler.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.DecodeMessage(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr,System.Single,System.Single)">
+            <summary>
+            Decode the message and create a collection of event arguments
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchHandler._LastEventArgs">
+            <summary>
+            The last event in the current gesture event sequence
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchHandler.RegisterTouchWindow">
+            <summary>
+            Register for touch event
+            </summary>
+            <returns>true if succeeded</returns>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchHandler.LastBeginEventArgs">
+            <summary>
+            The event arguments that started the current gesture
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchHandler.DisablePalmRejection">
+            <summary>
+            Gets or sets whether palm rejection is enabled.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchHandler.IsTouchEnabled">
+            <summary>
+            Check if Multi-touch support device is ready
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.GestureEventArgs.#ctor(DevComponents.DotNetBar.Touch.TouchHandler,DevComponents.DotNetBar.Touch.WinApi.GESTUREINFO@)">
+            <summary>
+            Create new gesture event instance and decode the gesture info structure
+            </summary>
+            <param name="handler">The gesture handler</param>
+            <param name="gestureInfo">The gesture information</param>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.GestureEventArgs._RotateAngle">
+            <summary>
+            Gesture relative rotation angle for Rotate event.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.GestureEventArgs._Center">
+            <summary>
+            Indicates calculated gesture center.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.GestureEventArgs._ZoomFactor">
+            <summary>
+            Gesture zoom factor for Zoom event.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.GestureEventArgs._PanTranslation">
+            <summary>
+            Gesture relative panning translation for Pan event.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.GestureEventArgs._PanVelocity">
+            <summary>
+            Gesture velocity vector of the pan gesture for custom inertia implementations.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.GestureEventArgs._LastEvent">
+            <summary>
+            The last touch arguments in this gesture event sequence.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.GestureEventArgs.Location">
+            <summary>
+            The client location of gesture.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.GestureEventArgs.IsBegin">
+            <summary>
+            Is this the first event of a gesture.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.GestureEventArgs.IsEnd">
+            <summary>
+            It this last event of a gesture.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.GestureEventArgs.IsInertia">
+            <summary>
+            Has gesture triggered inertia.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.GestureEventArgs.LastBeginEvent">
+            <summary>
+            The first touch arguments in this gesture event sequence.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Touch.TouchEventArgs">
+            <summary>
+            EventArgs passed to Touch handlers 
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.TouchEventArgs.#ctor(DevComponents.DotNetBar.Touch.TouchHandler,System.Single,System.Single,DevComponents.DotNetBar.Touch.WinApi.TOUCHINPUT@)">
+            <summary>
+            Create new touch event argument instance
+            </summary>
+            <param name="hWndWrapper">The target control</param>
+            <param name="touchInput">one of the inner touch input in the message</param>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchEventArgs._Location">
+            <summary>
+            Touch client coordinate in pixels
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchEventArgs._Id">
+            <summary>
+            A touch point identifier that distinguishes a particular touch input
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchEventArgs._Flags">
+            <summary>
+            A set of bit flags that specify various aspects of touch point
+            press, release, and motion. 
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchEventArgs._Mask">
+            <summary>
+            mask which fields in the structure are valid
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchEventArgs._AbsoluteTime">
+            <summary>
+            touch event time
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchEventArgs._Time">
+            <summary>
+            touch event time from system up
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Touch.TouchEventArgs._ContactSize">
+            <summary>
+            the size of the contact area in pixels
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsPrimaryContact">
+            <summary>
+            Is Primary Contact (The first touch sequence)
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsTouchMove">
+            <summary>
+            Specifies that movement occurred
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsTouchDown">
+            <summary>
+            Specifies that the corresponding touch point was established through a new contact
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsTouchUp">
+            <summary>
+            Specifies that a touch point was removed
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsTouchInRange">
+            <summary>
+            Specifies that a touch point is in range
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsTouchNoCoalesce">
+            <summary>
+            specifies that this input was not coalesced.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsTouchPen">
+            <summary>
+            Specifies that the touch point is associated with a pen contact
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Touch.TouchEventArgs.IsTouchPalm">
+            <summary>
+            The touch event came from the user's palm
+            </summary>
+            <remarks>Set <see cref="!:DisablePalmRejection"/> to true</remarks>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.WinApi.GetDigitizerStatus">
+            <summary>
+            Get the current Digitizer Status
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Touch.WinApi.GESTURECONFIG.#ctor(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Initializes a new instance of the GESTURECONFIG structure.
+            </summary>
+            <param name="dwID"></param>
+            <param name="dwWant"></param>
+            <param name="dwBlock"></param>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Touch.WinApi.DigitizerStatus">
+            <summary>
+            Specifies available digitizer capabilities
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Touch.WinApi.GESTUREINFO">
+            <summary>
+            Gesture Info Interop Structure
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Touch.WinApi.POINTS">
+            <summary>
+            A Simple POINTS Interop structure
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Touch.WinApi.POINT">
+            <summary>
+            A Simple POINT Interop structure
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Touch.WinApi.TOUCHINPUT">
+            <summary>
+            Touch API defined structures [winuser.h]
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyboardControl">
+            <summary>
+            Represents virtual keyboard control.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyboardControl.DefaultWidth">
+            <summary>
+            Default width for the keyboard in pixels.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyboardControl.DefaultHeight">
+            <summary>
+            Default height for the keyboard in pixels.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.#ctor">
+            <summary>
+            Creates a new VirtualKeyboard control.
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.OnTouchEnabledChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called when TouchEnabled property has changed.
+            </summary>
+            <param name="oldValue">Old property value</param>
+            <param name="newValue">New property value</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.HitTest(System.Drawing.Point)">
+            <summary>
+            Returns the Key at given location. Location expected is in control coordinates.
+            </summary>
+            <param name="location">Location is control coordinates.</param>
+            <returns>Key if there is a key at given location or null/nothing if no key exists at given location.</returns>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.AttachTo(System.Windows.Forms.Control)">
+            <summary>
+            Attaches the Keyboard to the specified control. The keyboard will automatically appear when the control receives input focus.
+            </summary>
+            <param name="control">The control to which the Keyboard will be attached.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.DetachFrom(System.Windows.Forms.Control)">
+            <summary>
+            Detaches the Keyboard from the specified control.
+            </summary>
+            <param name="control">The control from which the Keyboard will be detached.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.OnKeyboardClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Raises KeyboardClosing event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.OnKeyboardClosed(System.EventArgs)">
+            <summary>
+            Raises KeyboardClosed event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.OnSendingKey(DevComponents.DotNetBar.Keyboard.KeyboardKeyCancelEventArgs)">
+            <summary>
+            Raises SendingKey event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardControl.OnKeySent(DevComponents.DotNetBar.Keyboard.KeyboardKeyEventArgs)">
+            <summary>
+            Raises KeySent event.
+            </summary>
+            <param name="e">Provides event arguments.</param>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardControl.Keyboard">
+            <summary>
+            Gets or sets the Keyboard object that describes the VirtualKeyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardControl.ColorTable">
+            <summary>
+            Gets or set the ColorTable used to draw the keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardControl.Renderer">
+            <summary>
+            Gets or sets the Renderer used to render the keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardControl.IsTopBarVisible">
+            <summary>
+            Gets or sets a value indicating if the top bar of the keyboard is visible.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardControl.CaptionHeight">
+            <summary>
+            Indicates the height of the keyboard caption which hosts the close button.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.KeyboardControl.TouchEnabled">
+            <summary>
+            Indicates whether touch support is enabled when provided by hardware.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.KeyboardControl.KeyboardClosing">
+            <summary>
+            Occurs before the keyboard is closed and allows canceling of keyboard closing.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.KeyboardControl.KeyboardClosed">
+            <summary>
+            Occurs after keyboard is closed.
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.KeyboardControl.SendingKey">
+            <summary>
+            Occurs before the key pressed on keyboard is sent to target control and allows cancellation of the message
+            </summary>
+        </member>
+        <member name="E:DevComponents.DotNetBar.Keyboard.KeyboardControl.KeySent">
+            <summary>
+            Occurs after the key is sent to target control.
+            </summary>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyEventHandler">
+            <summary>
+            Defines delegate for key-related events.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyboardKeyEventArgs">
+            <summary>
+            Provides data for key related events.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyboardKeyEventArgs.Key">
+            <summary>
+            Gets the key being pressed. The format of this information
+            must confirm to the description for the SendKeys.Send function. For more details, see:
+            http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardKeyEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the KeyboardKeyEventArgs class.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyCancelEventHandler">
+            <summary>
+            Defines delegate for key-related events.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.KeyboardKeyCancelEventArgs">
+            <summary>
+            Provides data for key related events.
+            </summary>
+        </member>
+        <member name="F:DevComponents.DotNetBar.Keyboard.KeyboardKeyCancelEventArgs.Key">
+            <summary>
+            Gets the key being pressed. The format of this information
+            must confirm to the description for the SendKeys.Send function. For more details, see:
+            http://msdn.microsoft.com/en-us/library/system.windows.forms.sendkeys.aspx
+            </summary>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.KeyboardKeyCancelEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the KeyCancelEventArgs class.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable">
+            <summary>
+            Defines the VirtualKeyboard colors.
+            </summary>
+            <remarks>
+            This class maintains internally a Brush for each Color. These Brush objects are disposed internally when not needed anymore.
+            A Brush of a certain color is obtained by setting the same Color property to that color.
+            Maintaining the brushes here helps to have less GDI handles created / destroyed on each drawing of the keyboard.
+            </remarks>
+        </member>
+        <member name="M:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.#ctor">
+            <summary>
+            Creates a new color table for the VirtualKeyoard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.BackgroundColor">
+            <summary>
+            Gets or sets the color used to draw the background of the keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.BackgroundBrush">
+            <summary>
+            Gets a brush used for drawing the background of the keyboard.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.KeysColor">
+            <summary>
+            Gets or sets the color used for drawing normal keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.KeysBrush">
+            <summary>
+            Gets a brush used for drawing normal keys. 
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.LightKeysColor">
+            <summary>
+            Gets or sets the color used for drawing light keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.LightKeysBrush">
+            <summary>
+            Gets a brush used for drawing light keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.DarkKeysColor">
+            <summary>
+            Gets or sets the color used for drawing dark keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.DarkKeysBrush">
+            <summary>
+            Gets a brush used for drawing dark keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.PressedKeysColor">
+            <summary>
+            Gets or sets a brush used for drawing pressed keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.PressedKeysBrush">
+            <summary>
+            Gets a brush used for drawing pressed keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.DownKeysColor">
+            <summary>
+            Gets or sets a brush used for drawing pressed key when the key is down.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.DownKeysBrush">
+            <summary>
+            Gets a brush used for drawing pressed key when the key is down.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.TextColor">
+            <summary>
+             Gets or sets a color used for drawing the text on the keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.TextBrush">
+            <summary>
+            Gets a brush used for drawing the text on the keys.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.DownTextColor">
+            <summary>
+             Gets or sets a color used for drawing the text on a key when the key is down.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.DownTextBrush">
+            <summary>
+            Gets a brush used for drawing the text on a key when the key is down.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.TopBarTextColor">
+            <summary>
+             Gets or sets a color used for drawing the text on the top bar.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.TopBarTextBrush">
+            <summary>
+            Gets a brush used for drawing the text on the top bar.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.ToggleTextColor">
+            <summary>
+            Gets or sets a color used for drawing the text on a key when the key is in its toggled state.
+            </summary>
+        </member>
+        <member name="P:DevComponents.DotNetBar.Keyboard.VirtualKeyboardColorTable.ToggleTextBrush">
+            <summary>
+            Gets a brush used for drawing the text on a key when the key is in its toggled state.
+            </summary>
+        </member>
+    </members>
+</doc>

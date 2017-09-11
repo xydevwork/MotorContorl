@@ -1,0 +1,3228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevComponents.Instrumentation</name>
+    </assembly>
+    <members>
+        <member name="T:DevComponents.Instrumentation.GaugeControl">
+            <summary>
+            Represents the Gauge control.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.BeginUpdate">
+            <summary>
+            Disables any redrawing of the Gauge control. To maintain performance while items
+            are added one at a time to the control, call the BeginUpdate method. The BeginUpdate
+            method prevents the control from painting until the
+            <see cref="M:DevComponents.Instrumentation.GaugeControl.EndUpdate">EndUpdate</see> method is called.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.EndUpdate">
+            <summary>
+            Enables the redrawing of the Gauge control. To maintain performance while items are
+            added one at a time to the control, call the <see cref="M:DevComponents.Instrumentation.GaugeControl.BeginUpdate">BeginUpdate</see>
+            method. The BeginUpdate method prevents the control from painting until the EndUpdate
+            method is called.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.GetPointerValue(System.String)">
+            <summary>
+            Gets the named Pointer Value.
+            If the Pointer is not defined, an exception is thrown.
+            </summary>
+            <param name="pointerName">Pointer Name</param>
+            <returns>Value</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.GetPointerValue(System.String,System.String)">
+            <summary>
+            Gets the named Scale:Pointer Value.
+            If either the Scale or the Pointer is not defined,
+            an exception is thrown.
+            </summary>
+            <param name="scaleName">Scale Name</param>
+            <param name="pointerName">Pointer Name</param>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.SetPointerValue(System.String,System.Double)">
+            <summary>
+            Sets the named Pointer Value to the given value.
+            An exception is thrown if the Pointer is not defined.
+            </summary>
+            <param name="pointerName">Pointer Name</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.SetPointerValue(System.String,System.Double,System.Boolean)">
+            <summary>
+            Sets the named Pointer Value to the given value.
+            An exception is thrown if the Pointer is not defined.
+            </summary>
+            <param name="pointerName">Pointer Name</param>
+            <param name="value">Value to set</param>
+            <param name="dampen">Indicates whether to dampen the resultant output</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.SetPointerValue(System.String,System.String,System.Double)">
+            <summary>
+            Sets the named Scale:Pointer Value to the given value.
+            An exception is thrown if the Scale or Pointer is not defined.
+            </summary>
+            <param name="scaleName">Scale name</param>
+            <param name="pointerName">Pointer name</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.SetPointerValue(System.String,System.String,System.Double,System.Boolean)">
+            <summary>
+            Sets the named Scale:Pointer Value to the given value.
+            An exception is thrown if the Scale or Pointer is not defined.
+            </summary>
+            <param name="scaleName">Scale name</param>
+            <param name="pointerName">Pointer name</param>
+            <param name="value">Value to set</param>
+            <param name="dampen">Indicates whether to dampen the resultant output</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.GetPointer(System.String)">
+            <summary>
+            Gets the named Pointer.
+            </summary>
+            <param name="pointerName">Pointer name</param>
+            <returns>Pointer, or null</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.GetPointer(System.String,System.String)">
+            <summary>
+            Gets the named Scale:Pointer.
+            </summary>
+            <param name="scaleName">Scale name</param>
+            <param name="pointerName">Pointer name</param>
+            <returns>Pointer, or null</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.GetGaugeItemFromPoint(System.Drawing.Point)">
+            <summary>
+            Gets the GaugeItem from the given Point
+            </summary>
+            <param name="pt">Point</param>
+            <returns>GaugeItem, or null</returns>
+        </member>
+        <member name="F:DevComponents.Instrumentation.GaugeControl.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeControl.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeControl.Frame">
+            <summary>
+            Gets the gauge Frame.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeControl.GaugeItems">
+            <summary>
+            Gets the collection og GaugeItems (Text, Image, etc)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeControl.CircularScales">
+            <summary>
+            Gets the collection of Circular Scales contained within the gauge.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeControl.LinearScales">
+            <summary>
+            Gets the collection of Linear Scales contained within the gauge.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeControl.ShowToolTips">
+            <summary>
+            Gets or sets whether to display ToolTips
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.RenderGaugeContentEventArgs">
+            <summary>
+            RenderGaugeContentEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.RenderGaugeContentEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.RenderGaugeContentEventArgs.Bounds">
+            <summary>
+            Gauge Bounds
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderScaleEventArgs">
+            <summary>
+            PreRenderScaleEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderScaleEventArgs">
+            <summary>
+            PostRenderScaleEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleEventArgs.Scale">
+            <summary>
+            GaugeScale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderScaleEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderScaleRangeEventArgs">
+            <summary>
+            PreRenderScaleRangeEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderScaleRangeEventArgs">
+            <summary>
+            PostRenderScaleRangeEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleRangeEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleRangeEventArgs.Range">
+            <summary>
+            GaugeRange
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleRangeEventArgs.Bounds">
+            <summary>
+            GaugeRange Bounds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleRangeEventArgs.StartAngle">
+            <summary>
+            Range StartAngle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleRangeEventArgs.SweepAngle">
+            <summary>
+            Range SweepAngle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderScaleRangeEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderScaleSectionEventArgs">
+            <summary>
+            PreRenderScaleSectionEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderScaleSectionEventArgs">
+            <summary>
+            PostRenderScaleSectionEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleSectionEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleSectionEventArgs.Section">
+            <summary>
+            GaugeSection
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleSectionEventArgs.Bounds">
+            <summary>
+            Section Bounds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleSectionEventArgs.StartAngle">
+            <summary>
+            Section StartAngle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleSectionEventArgs.SweepAngle">
+            <summary>
+            Section SweepAngle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderScaleSectionEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderScalePointerEventArgs">
+            <summary>
+            PreRenderScalePointerEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderScalePointerEventArgs">
+            <summary>
+            PostRenderScalePointerEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScalePointerEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScalePointerEventArgs.Pointer">
+            <summary>
+            GaugePointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderScalePointerEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderScaleGaugePinEventArgs">
+            <summary>
+            PreRenderScaleGaugePinEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderScaleGaugePinEventArgs">
+            <summary>
+            PostRenderScaleGaugePinEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleGaugePinEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleGaugePinEventArgs.GaugePin">
+            <summary>
+            GaugePin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderScaleGaugePinEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderScaleCustomLabelEventArgs">
+            <summary>
+            PreRenderScaleCustomLabelEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderScaleCustomLabelEventArgs">
+            <summary>
+            PostRenderScaleCustomLabelEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleCustomLabelEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderScaleCustomLabelEventArgs.CustomLabel">
+            <summary>
+            CustomLabel
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderScaleCustomLabelEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderIndicatorEventArgs">
+            <summary>
+            PreRenderIndicatorEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderIndicatorEventArgs">
+            <summary>
+            PostRenderIndicatorEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderIndicatorEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderIndicatorEventArgs.Indicator">
+            <summary>
+            GaugeIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderIndicatorEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderIndicatorDigitEventArgs">
+            <summary>
+            PreRenderIndicatorDigitEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderIndicatorDigitEventArgs">
+            <summary>
+            PostRenderIndicatorDigitEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderIndicatorDigitEventArgs.Graphics">
+            <summary>
+            Graphics
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderIndicatorDigitEventArgs.Indicator">
+            <summary>
+            GaugeIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderIndicatorDigitEventArgs.Digit">
+            <summary>
+            NumericElement / digit
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderIndicatorDigitEventArgs.Index">
+            <summary>
+            NumericElement / digit index (from left to right)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderIndicatorDigitEventArgs.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.ScaleEnterEventArgs">
+            <summary>
+            ScaleEnterEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.ScaleEnterEventArgs.Pointer">
+            <summary>
+            GaugePointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.ScaleEnterEventArgs.Scale">
+            <summary>
+            GaugeScale
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.ScaleLeaveEventArgs">
+            <summary>
+            ScaleLeaveEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.SectionEnterEventArgs">
+            <summary>
+            SectionEnterEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.SectionEnterEventArgs.Pointer">
+            <summary>
+            GaugePointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.SectionEnterEventArgs.Section">
+            <summary>
+            GaugeSection
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.SectionLeaveEventArgs">
+            <summary>
+            SectionLeaveEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.RangeEnterEventArgs">
+            <summary>
+            RangeEnterEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.RangeEnterEventArgs.Pointer">
+            <summary>
+            GaugePointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.RangeEnterEventArgs.Range">
+            <summary>
+            GaugeRange
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.RangeLeaveEventArgs">
+            <summary>
+            RangeLeaveEventArgs
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PointerChangingEventArgs">
+            <summary>
+            PointerChangingEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PointerChangingEventArgs.Pointer">
+            <summary>
+            GaugePointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PointerChangingEventArgs.OldValue">
+            <summary>
+            OldValue
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PointerChangingEventArgs.NewValue">
+            <summary>
+            NewValue
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PointerChangedEventArgs">
+            <summary>
+            PointerChangedEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PointerChangedEventArgs.Pointer">
+            <summary>
+            GaugePointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PointerChangedEventArgs.OldValue">
+            <summary>
+            OldValue
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PointerChangedEventArgs.NewValue">
+            <summary>
+            NewValue
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GetPointerPathEventArgs">
+            <summary>
+            GetPointerPathEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetPointerPathEventArgs.Bounds">
+            <summary>
+            Bounds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetPointerPathEventArgs.Path">
+            <summary>
+            GraphicsPath
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetPointerPathEventArgs.Pointer">
+            <summary>
+            GaugePointer
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GetDisplayTemplateTextEventArgs">
+            <summary>
+            GetDisplayTemplateTextEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetDisplayTemplateTextEventArgs.GaugeItem">
+            <summary>
+            Gets the GaugeItem
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetDisplayTemplateTextEventArgs.DisplayText">
+            <summary>
+            Gets or sets the Display Text for the given DisplayTemplate
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetDisplayTemplateTextEventArgs.DisplayTemplate">
+            <summary>
+            Gets the Display Template
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetDisplayTemplateTextEventArgs.DisplayFormat">
+            <summary>
+            Gets the Display Format for the given DisplayTemplate
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GetDigitSegmentsEventArgs">
+            <summary>
+            GetDigitSegmentsEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetDigitSegmentsEventArgs.Digit">
+            <summary>
+            Digit
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetDigitSegmentsEventArgs.Indicator">
+            <summary>
+            NumericIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GetDigitSegmentsEventArgs.Segments">
+            <summary>
+            Segments pattern
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericElement.DigitColor">
+            <summary>
+            Gets or sets the Digit Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericElement.DigitDimColor">
+            <summary>
+            Gets or sets the default Digit Dim Color (Dim LED color)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericElement.ShowDimSegments">
+            <summary>
+            Gets or sets the whether dim segments are displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericElement.NumIndicator">
+            <summary>
+            Gets or sets the owning NumericIndicator
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeItem.PerformLayout">
+            <summary>
+            Causes the item to recalculate its layout
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeItem.Name">
+            <summary>
+            Gets or sets the Name associated with the item
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeItem.Tag">
+            <summary>
+            Gets or sets the user defined Tag associated with the item
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeItem.Tooltip">
+            <summary>
+            Gets or sets the Tooltip associated with the item
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeItem.Visible">
+            <summary>
+            Gets or sets the item Visibility state.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.AutoSize">
+            <summary>
+            Gets or sets whether the indicator contents are auto sized
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.BackColor">
+            <summary>
+            Gets or sets the BackColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.DampeningSweepTime">
+            <summary>
+            Gets or sets the time it takes for the indicator to
+            change from its minimum to maximum value, measured in seconds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.EmptyString">
+            <summary>
+            Gets or sets the text string to display when the Indicator Value is empty (double.NaN)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.Font">
+            <summary>
+            Gets or sets the text Font
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.GaugeControl">
+            <summary>
+            Gets or sets the owning GaugeControl
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.Location">
+            <summary>
+            Gets or sets the location of the image area, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.MaxValue">
+            <summary>
+            Gets or sets the Maximum value for the Indicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.MinValue">
+            <summary>
+            Gets or sets the Minimum value for the Indicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.OverRangeString">
+            <summary>
+            Gets or sets the text string to display when the Indicator Value is over the set MaxValue range
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.RefreshRate">
+            <summary>
+            Gets or sets how often the indicator is refreshed per second
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.Size">
+            <summary>
+            Gets or sets the size of the indicator, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.Text">
+            <summary>
+            Gets or sets the text to be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.UnderRangeString">
+            <summary>
+            Gets or sets the text string to display when the Indicator Value is under the set MinValue range
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.UnderScale">
+            <summary>
+            Gets or sets whether the indicator is displayed under the scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.Value">
+            <summary>
+            Gets or sets the indicator value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIndicator.ValueEx">
+            <summary>
+            Gets or sets the value of the indicator - but with no dampening
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseCollection`1.AddRange(`0[])">
+            <summary>
+            Adds a range of items to the collection
+            </summary>
+            <param name="items">Array of items to add</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Processes list RemoveItem calls
+            </summary>
+            <param name="index">Index to remove</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Processes list InsertItem calls
+            </summary>
+            <param name="index">Index to add</param>
+            <param name="item">Text to add</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseCollection`1.SetItem(System.Int32,`0)">
+            <summary>
+            Processes list SetItem calls (e.g. replace)
+            </summary>
+            <param name="index">Index to replace</param>
+            <param name="newItem">Text to replace</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseCollection`1.ClearItems">
+            <summary>
+            Processes list Clear calls (e.g. remove all)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.IndicatorRange.BackColor">
+            <summary>
+            Gets or sets the BackColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.IndicatorRange.EndValue">
+            <summary>
+            Gets or sets the Ending range value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.IndicatorRange.StartValue">
+            <summary>
+            Gets or sets the Starting range value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.DecimalColor">
+            <summary>
+            Gets or sets the default Decimal Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.DecimalDimColor">
+            <summary>
+            Gets or sets the default Decimal Dim Color (Dim LED color)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.DigitColor">
+            <summary>
+            Gets or sets the default Digit Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.DigitDimColor">
+            <summary>
+            Gets or sets the default Digit Dim Color (Dim LED color)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.DigitPlacement">
+            <summary>
+            Gets or sets the Placement of the digits within the indicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.Digits">
+            <summary>
+            Gets the array of defined digits (units and decimals).
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.FormatString">
+            <summary>
+            Gets or sets the .Net format string to use when displaying the indicator value.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.NumberOfDecimals">
+            <summary>
+            Gets or sets the number of decimals to display.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.NumberOfDigits">
+            <summary>
+            Gets or sets the number of total digits to display (units and decimals).
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.Padding">
+            <summary>
+            Gets or sets the indicator padding.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.Ranges">
+            <summary>
+            Gets the collection of Ranges associated with the Indicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.SegmentWidth">
+            <summary>
+            Gets or sets the Digital segment width, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.SeparatorColor">
+            <summary>
+            Gets or sets the Digit Separator Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.SeparatorWidth">
+            <summary>
+            Gets or sets the Length of the Pin, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.ShearFactor">
+            <summary>
+            Gets or Sets the shear coefficient for italicizing the Digits display
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.ShowDecimalPoint">
+            <summary>
+            Gets or sets whether the decimal point should be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.ShowDimColonPoints">
+            <summary>
+            Gets or sets whether dim colon points should be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.ShowDimDecimalPoint">
+            <summary>
+            Gets or sets whether dim decimal points should be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.ShowDimSegments">
+            <summary>
+            Gets or sets whether dim segments should be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.ShowLeadingZeros">
+            <summary>
+            Gets or sets whether leading zeros should be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.SignVisibility">
+            <summary>
+            Gets or sets when the +/- sign should be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericIndicator.Style">
+            <summary>
+            Gets or sets the Indicator Style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericRange.DecimalColor">
+            <summary>
+            Gets or sets the default Decimal Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericRange.DecimalDimColor">
+            <summary>
+            Gets or sets the default Decimal Dim Color (Dim LED color)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericRange.DigitColor">
+            <summary>
+            Gets or sets the default Digit Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericRange.DigitDimColor">
+            <summary>
+            Gets or sets the default Digit Dim Color (Dim LED color)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.NumericRange.NumericIndicator">
+            <summary>
+            Gets or sets the NumericIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.Angle">
+            <summary>
+            Gets or sets the amount to rotate the indicator, specified in degrees.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.Image">
+            <summary>
+            Gets or sets the Image to use
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.Ranges">
+            <summary>
+            Gets the collection of Ranges associated with the Indicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.RoundRectangleArc">
+            <summary>
+            Gets or sets the RoundRectangle corner radius,
+            measured as a percentage of the width/height.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.Style">
+            <summary>
+            Gets or sets the Indicator Style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.TextAlignment">
+            <summary>
+            Gets or sets the alignment of the text
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.TextColor">
+            <summary>
+            Gets or sets the text Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.TextHorizontalOffset">
+            <summary>
+            Gets or sets the horizontal distance to offset the Indicator Text, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateIndicator.TextVerticalOffset">
+            <summary>
+            Gets or sets the vertical distance to offset the Indicator Text, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateRange.Image">
+            <summary>
+            Gets or sets the Image to use
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateRange.StateIndicator">
+            <summary>
+            Gets or sets the StateIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateRange.Text">
+            <summary>
+            Gets or sets the text to be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateRange.TextColor">
+            <summary>
+            Gets or sets the text Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateRange.TextHorizontalOffset">
+            <summary>
+            Gets or sets the horizontal distance to offset the Indicator Text, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.StateRange.TextVerticalOffset">
+            <summary>
+            Gets or sets the vertical distance to offset the Indicator Text, measured as a percentage
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeBaseLabel.GetRadians(System.Single)">
+            <summary>
+            Converts Degrees to Radians
+            </summary>
+            <param name="theta">Degrees</param>
+            <returns>Radians</returns>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeBaseLabel.Layout">
+            <summary>
+            Gets the label Layout
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeBaseLabel.Scale">
+            <summary>
+            Gets the associated Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCustomLabel.Scale">
+            <summary>
+            Gets the label's associated Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCustomLabel.Text">
+            <summary>
+            Gets or sets the Label text
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCustomLabel.TickMark">
+            <summary>
+            Gets the Label Tickmark definition
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCustomLabel.Value">
+            <summary>
+            Gets or sets the Label scale value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePinLabel.Text">
+            <summary>
+            Gets or sets the Label text
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GaugeCircularScaleCollection">
+            <summary>
+            Collection of GaugeCircularScales
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.BorderColor">
+            <summary>
+            Gets or sets the Color of the Border
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.BorderWidth">
+            <summary>
+            Gets or sets the width of the Border, specified as pixels
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.Bounds">
+            <summary>
+            Gets the Bounds of the scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.CustomLabels">
+            <summary>
+            Gets or sets the collection of Custom Labels
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.GaugeControl">
+            <summary>
+            Gets the associated GaugeControl
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.Labels">
+            <summary>
+            Gets the default Scale Label properties
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MajorTickMarks">
+            <summary>
+             Gets the Scale MajorTickMarks
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MinorTickMarks">
+            <summary>
+            Gets the Scale MinorTickMarks
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MaxPin">
+            <summary>
+            Gets the properties for the Scale Maximum Pin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MinPin">
+            <summary>
+            Gets the properties for the Scale Minimum Pin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MinLimit">
+            <summary>
+            Gets or sets the absolute minimum value for the scale.
+            Setting this values will permit the scale to scroll beyond the
+            current MinValue range.
+            
+            Both MinLimit and MaxLimit values must both be set to 
+            valid min/max values, or both reset to their defaults (double.NaN)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MaxLimit">
+            <summary>
+            Gets or sets the absolute maximum value for the scale.
+            Setting this values will permit the scale to scroll beyond the
+            current MaxValue range.
+            
+            Both MinLimit and MaxLimit values must both be set to 
+            valid min/max values, or both reset to their defaults (double.NaN)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MaxValue">
+            <summary>
+            Gets or sets the Maximum value for the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.MinValue">
+            <summary>
+            Gets or sets the Minimum value for the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.Pointers">
+            <summary>
+            Gets the collection of Pointers associated with the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.Ranges">
+            <summary>
+            Gets the collection of Ranges associated with the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.Reversed">
+            <summary>
+            Gets or sets whether the Scale min/max direction is reversed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.Sections">
+            <summary>
+            Gets the collection of Sections associated with the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeScale.Width">
+            <summary>
+            Gets or sets the Width of the Scale, specified as a percentage
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeCircularScale.GetRadians(System.Single)">
+            <summary>
+            Converts Degrees to Radians
+            </summary>
+            <param name="theta">Degrees</param>
+            <returns>Radians</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeCircularScale.GetRadiansFromPoint(System.Drawing.Point)">
+            <summary>
+            Gets the angle (in radians) of the given point on the scale.
+            </summary>
+            <param name="pt"></param>
+            <returns>Angle, in radians</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeCircularScale.GetDegreesFromPoint(System.Drawing.Point)">
+            <summary>
+            Gets the angle (in degrees) of the given point on the scale.
+            </summary>
+            <param name="pt"></param>
+            <returns>Angle, in degrees</returns>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCircularScale.PivotPoint">
+            <summary>
+            Gets or sets the Scale pivot point, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCircularScale.Radius">
+            <summary>
+            Gets or sets the Radius of Scale, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCircularScale.StartAngle">
+            <summary>
+            Gets and sets the angle measured from the x-axis to the starting point of the scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeCircularScale.SweepAngle">
+            <summary>
+            Get and sets the angle measured from the StartAngle to the ending point of the scale.
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GaugeLinearScaleCollection">
+            <summary>
+            Collection of GaugeLinearScales
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeLinearScale.Location">
+            <summary>
+            Gets or sets the Scale location, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeLinearScale.Orientation">
+            <summary>
+            Gets or sets the Scale display orientation
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeLinearScale.ReverseScalingAxis">
+            <summary>
+            Gets or sets whether linear scales are scaled
+            using the default axis or not.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeLinearScale.Size">
+            <summary>
+            Gets or sets the bounding size of the Scale, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeTickMarkBase.Scale">
+            <summary>
+            Gets the associated Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeTickMarkBase.Layout">
+            <summary>
+            Gets the Tickmark leyout
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.AdaptiveLabel">
+            <summary>
+            Gets or sets whether labels are to adapt to the scale shape
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.Angle">
+            <summary>
+            Gets or sets the additional number of degrees the label will be rotated
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.AutoOrientLabel">
+            <summary>
+            Gets or sets whether the label will be auto oriented away from being upside down
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.AutoSize">
+            <summary>
+            Gets or sets whether the label Font size is auto sized
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.Font">
+            <summary>
+            Gets or sets the Font to use for the label
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.ForeColor">
+            <summary>
+            Gets or sets the Label text Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.Placement">
+            <summary>
+            Gets or sets the Placement of the Label with respect to the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.RotateLabel">
+            <summary>
+            Gets or sets whether labels are rotated along the scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.LabelLayout.ScaleOffset">
+            <summary>
+            Gets or sets the distance from the Label to the Scale, measured as a percentage
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeMarker.GetRadians(System.Single)">
+            <summary>
+            Converts Degrees to Radians
+            </summary>
+            <param name="theta">Degrees</param>
+            <returns>Radians</returns>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GaugePointerCollection">
+            <summary>
+            Collection of GaugePointers
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugePointer.GetPointerPath">
+            <summary>
+            Gets the Pointers GraphicsPath
+            </summary>
+            <returns>Pointers GraphicsPath</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugePointer.GetCapBounds">
+            <summary>
+            Gets the Pointer's Needle Cap bounds
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugePointer.GetValueFromPoint(System.Drawing.Point)">
+            <summary>
+            Gets the value of the pointer from the given Point
+            </summary>
+            <param name="point">Point</param>
+            <returns>Value</returns>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.AllowUserChange">
+            <summary>
+            Gets or sets whether the user can change the pointer interactively by the mouse
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.BarStyle">
+            <summary>
+            Gets or sets the Bar Style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.BulbOffset">
+            <summary>
+            Gets or sets the distance of the thermometer bulb from the start of the scale, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.BulbSize">
+            <summary>
+            Gets or sets the size of the thermometer bulb, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.BulbStyle">
+            <summary>
+            Gets or sets the Thermometer Bulb Style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapBounds">
+            <summary>
+            Gets the CapBounds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapFillColor">
+            <summary>
+            Gets or sets the Needle Cap Fill Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapFillColorEx">
+            <summary>
+            Gets the range/section adjusted Pointer CapFillColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapImage">
+            <summary>
+            Gets or sets the Image to use for the Needle Cap
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapInnerBevel">
+            <summary>
+            Gets or sets the width of the needle cap's inner bevel, measured as a percentage of the cap width
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapOnTop">
+            <summary>
+            Gets or sets whether the cap is ontop of the needle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapOuterBevel">
+            <summary>
+            Gets or sets the width of the needle cap's outer bevel, measured as a percentage of the cap width
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapStyle">
+            <summary>
+            Gets or sets the style of the needle cap
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.CapWidth">
+            <summary>
+            Gets or sets the width of the needle cap
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.ChangeCursor">
+            <summary>
+            Gets or sets the Cursor displayed when the user can change the Pointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.DampeningSweepTime">
+            <summary>
+            Gets or sets the time it takes for the pointer to travel the entire scale, measured in seconds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.FillColor">
+            <summary>
+            Gets or sets the Pointer FillColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.FillColorEx">
+            <summary>
+            Gets the range/section adjusted Pointer FillColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.HonorMaxPin">
+            <summary>
+            Gets or sets whether the pointer honors the Maximum Pin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.HonorMinPin">
+            <summary>
+            Gets or sets whether the pointer honors the Minimum Pin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Image">
+            <summary>
+            Gets or sets the Image to use for the Pointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.IntervalPoint">
+            <summary>
+            Gets the Pointer Interval Point for the current Value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.IntervalAngle">
+            <summary>
+            Gets the Pointer Interval Angle for the current Value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Length">
+            <summary>
+            Gets or sets the Pointer length, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.MarkerStyle">
+            <summary>
+            Gets or sets the Marker style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.NeedleStyle">
+            <summary>
+            Gets or sets the width of the needle cap
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Origin">
+            <summary>
+            Gets or sets the Bar/Thermometer Pointer origin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.OriginInterval">
+            <summary>
+            Gets or sets the custom Bar/Thermometer origin interval
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Placement">
+            <summary>
+            Gets or sets the Placement of the pointer with respect to the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.RotateCap">
+            <summary>
+            Gets or sets whether the needle cap is rotated to match the needle angle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Scale">
+            <summary>
+            Gets the pointer's associated Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.ScaleOffset">
+            <summary>
+            Gets or sets the distance from the Pointer to the Scale, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.SnapInterval">
+            <summary>
+            Gets or sets the interval to use to Snap user input values to
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Style">
+            <summary>
+            Gets or sets the Pointer style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.ThermoBackColor">
+            <summary>
+            Gets or sets the Thermometers's Background "tube" Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.UnderTickMarks">
+            <summary>
+            Gets or sets whether the marker is under all TickMarks
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Value">
+            <summary>
+            Gets or sets the Pointer value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.ValueEx">
+            <summary>
+            Gets or sets the value of the pointer - but with no dampening
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePointer.Width">
+            <summary>
+            Gets or sets the Pointer width, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIntervalLabel.FormatString">
+            <summary>
+            Gets or sets the .Net format string used to display all non-custom defined labels.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIntervalLabel.Interval">
+            <summary>
+            Gets or sets the Label Interval
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIntervalLabel.IntervalOffset">
+            <summary>
+            Gets or sets the Label Interval Offset
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIntervalLabel.ShowMaxLabel">
+            <summary>
+            Gets or sets whether to show the Maximum Scale label
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeIntervalLabel.ShowMinLabel">
+            <summary>
+            Gets or sets whether to show the Minimum Scale label
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.EndOffset">
+            <summary>
+            Gets or sets the offset from the end of the scale, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.FillColor">
+            <summary>
+            Gets or sets Indicates the Pin FillColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.Image">
+            <summary>
+            Gets or sets the Image to use for the Pin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.IsMaxPin">
+            <summary>
+            Gets whether the pin is the Maximum Pin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.Label">
+            <summary>
+            Gets or sets the Label associated with the Pin
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.Length">
+            <summary>
+            Gets or sets the Length of the Pin, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.Placement">
+            <summary>
+            Gets or sets the Placement of the Pin with respect to the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.Scale">
+            <summary>
+            Gets the pin's associated Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.ScaleOffset">
+            <summary>
+            Gets or sets the distance from the Pin to the Scale, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.Style">
+            <summary>
+            Gets or sets the Pin display style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugePin.Width">
+            <summary>
+            Gets or sets the Width of the Pin, specified as a percentage
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GaugeRangeCollection">
+            <summary>
+            Collection of GaugeRanges
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GaugeStrip.GetRadians(System.Single)">
+            <summary>
+            Converts Degrees to Radians
+            </summary>
+            <param name="theta">Degrees</param>
+            <returns>Radians</returns>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.CapFillColor">
+            <summary>
+            Gets or sets the Cap Fill Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.EndValue">
+            <summary>
+            Gets or sets the Ending value for the area
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.PointerFillColor">
+            <summary>
+            Gets or sets the Pointer Fill Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.FillColor">
+            <summary>
+            Gets or sets the area Fill Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.LabelColor">
+            <summary>
+            Gets or sets the Section Label Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.MajorTickMarkFillColor">
+            <summary>
+            Gets or sets the MajorTickMark Fill Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.MinorTickMarkFillColor">
+            <summary>
+            Gets or sets the MinorTickMark Fill Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.Scale">
+            <summary>
+            Gets the associated Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.ScaleOffset">
+            <summary>
+            Gets or sets the distance from the Scale, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.StartValue">
+            <summary>
+            Gets or sets the Starting value for the area
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeStrip.Visible">
+            <summary>
+            Gets or sets the item Visibility state.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeRange.EndWidth">
+            <summary>
+            Gets or sets the End Width of the Range, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeRange.Placement">
+            <summary>
+            Gets or sets the Placement of the Range with respect to the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeRange.StartWidth">
+            <summary>
+            Gets or sets the Start Width of the Range, specified as a percentage
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GaugeSectionCollection">
+            <summary>
+            Collection of GaugeSections
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeSection.Width">
+            <summary>
+            Gets or sets the Width of the Section, specified as a percentage
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GaugeTextCollection">
+            <summary>
+            Collection of GaugeText items
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.Angle">
+            <summary>
+            Gets or sets the amount to rotate the text, specified in degrees.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.AutoSize">
+            <summary>
+            Gets or sets whether the text Font size is auto sized
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.BackColor">
+            <summary>
+            Gets or sets the text BackColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.Font">
+            <summary>
+            Gets or sets the text Font
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.ForeColor">
+            <summary>
+            Gets or sets the text ForeColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.Location">
+            <summary>
+            Gets or sets the center location of the text area, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.Size">
+            <summary>
+            Gets or sets the size of the text area, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.Text">
+            <summary>
+            Gets or sets the text to be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.TextAlignment">
+            <summary>
+            Gets or sets the alignment of the text
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeText.UnderScale">
+            <summary>
+            Gets or sets whether the text is displayed under the scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeTickMark.Interval">
+            <summary>
+            Gets or sets the TickMark Interval spacing
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeTickMark.IntervalOffset">
+            <summary>
+            Gets or sets the initial TickMark Interval Offset
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.AbsBevelInside">
+            <summary>
+            Gets the calculated inside bevel dimension for the frame
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.AbsBevelOutside">
+            <summary>
+            Gets the calculated outside bevel dimension for the frame
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.AddGlassEffect">
+            <summary>
+            Gets or sets whether to add a Glass Effect to the frame
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.BackBounds">
+            <summary>
+            Gets the background bounding rectangle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.BackColor">
+            <summary>
+            Gets or sets the background Color of the Gauge.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.BackSigmaFocus">
+            <summary>
+            Gets or sets the SigmaBellShape Focus used when Center filling the frame.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.BackSigmaScale">
+            <summary>
+            Gets or sets the SigmaBellShape Scale used when Center filling the frame.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.Bounds">
+            <summary>
+            Gets the bounding frame rectangle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.Center">
+            <summary>
+            Gets the center of the gauge frame
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.InnerBevel">
+            <summary>
+            Gets or sets the inner frame bevel width, measured as a percentage of the width/height.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.OuterBevel">
+            <summary>
+            Gets or sets the outer frame bevel width, measured as a percentage of the width/height.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.ClipOuterFrame">
+            <summary>
+            Gets and sets whether the frame exterior is clipped.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.FrameColor">
+            <summary>
+            Gets or sets the Frame Color of the Gauge.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.Image">
+            <summary>
+            Gets of sets the Image to use for the Gauge Frame
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.FrameSigmaFocus">
+            <summary>
+            Gets or sets the SigmaBellShape.Focus used when Center filling the frame.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.FrameSigmaScale">
+            <summary>
+            Gets or sets the SigmaBellShape.Scale used when Center filling the frame.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.GaugeControl">
+            <summary>
+            Gets the parent GaugeControl.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.RoundRectangleArc">
+            <summary>
+            Gets or sets the arc radius used when drawing RoundRectangle
+            frames, measured as a percentage of the width/height.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeFrame.Style">
+            <summary>
+            Gets or sets the frame Style.
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.SetFrameRegionEventArgs">
+            <summary>
+            SetFrameRegionEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.SetFrameRegionEventArgs.Bounds">
+            <summary>
+            Gets the Region Bounds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.SetFrameRegionEventArgs.Region">
+            <summary>
+            Gets or sets the frame Region
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderFrameEventArgs">
+            <summary>
+            PostRenderFrameEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderFrameEventArgs.Bounds">
+            <summary>
+            Gets the Frame Bounds
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderFrameEventArgs.Graphics">
+            <summary>
+            Gets the Graphics object to use for the render
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.GaugeImageCollection">
+            <summary>
+            Collection of GaugeImages
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeImage.Angle">
+            <summary>
+            Gets or sets the amount to rotate the image, specified in degrees
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeImage.AutoFit">
+            <summary>
+            Gets or sets whether the image will be stretched to fit the given area
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeImage.Image">
+            <summary>
+            Gets or sets the Image to be displayed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeImage.Location">
+            <summary>
+            Gets or sets the location of the image area, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeImage.Size">
+            <summary>
+            Gets or sets the size of the image, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GaugeImage.UnderScale">
+            <summary>
+            Gets or sets whether the image is displayed under the scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.FillColor">
+            <summary>
+            Gets or sets the TickMark Fill Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.Image">
+            <summary>
+            Gets or sets the Image to use for the TickMark
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.Length">
+            <summary>
+            Gets or sets the Length of the TickMark, specified as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.Placement">
+            <summary>
+            Gets or sets the Placement of the TickMarks with respect to the Scale
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.ScaleOffset">
+            <summary>
+            Gets or sets the distance from the TickMark to the Scale, measured as a percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.Style">
+            <summary>
+            Gets or sets the TickMark Style
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.Overlap">
+            <summary>
+            Gets or sets how the TickMark overlaps previous TickMarks
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.TickMarkLayout.Width">
+            <summary>
+            Gets or sets the Width of the TickMark, specified as a percentage
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.Primitives.LinearGradientColorTable">
+            <summary>
+            Represents the color table of linear gradient.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.#ctor">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.#ctor(System.Drawing.Color)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="start">Start color.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.#ctor(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="start">Start color.</param>
+            <param name="end">End color.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.#ctor(System.String,System.String)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="start">Start color in hexadecimal representation like FFFFFF.</param>
+            <param name="end">End color in hexadecimal representation like FFFFFF.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="start">Start color in 32-bit RGB representation.</param>
+            <param name="end">End color in 32-bit RGB representation.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="start">Start color in 32-bit RGB representation.</param>
+            <param name="end">End color in 32-bit RGB representation.</param>
+            <param name="gradientAngle">Gradient angle.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.#ctor(System.Drawing.Color,System.Drawing.Color,System.Int32)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="start">Start color.</param>
+            <param name="end">End color.</param>
+            <param name="gradientAngle">Gradient angle.</param>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.Start">
+            <summary>
+            Gets or sets the start color.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.End">
+            <summary>
+            Gets or sets the end color.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.GradientAngle">
+            <summary>
+            Gets or sets the gradient angle. Default value is 90.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.LinearGradientColorTable.IsEmpty">
+            <summary>
+            Gets whether both colors assigned are empty.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.#ctor">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.#ctor(System.Drawing.Color)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="color">Beginning color.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.#ctor(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="color1">Begin color.</param>
+            <param name="color2">End color.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.#ctor(System.String,System.String)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="color1">Beginning color in hexadecimal representation like FFFFFF.</param>
+            <param name="color2">End color in hexadecimal representation like FFFFFF.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="color1">Beginning color in 32-bit RGB representation.</param>
+            <param name="color2">End color in 32-bit RGB representation.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="color1">Beginning color in 32-bit RGB representation.</param>
+            <param name="color2">End color in 32-bit RGB representation.</param>
+            <param name="gradientAngle">Gradient angle.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.#ctor(System.Drawing.Color,System.Drawing.Color,System.Int32)">
+            <summary>
+            Creates new instance of the object.
+            </summary>
+            <param name="color1">Beginning color.</param>
+            <param name="color2">End color.</param>
+            <param name="gradientAngle">Gradient angle.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.IsEqualTo(DevComponents.Instrumentation.GradientFillColor)">
+            <summary>
+            Determines if the fillcolor is equal to the given one
+            </summary>
+            <param name="fillColor">FillColor to compare</param>
+            <returns>true if equal</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.GradientFillColor.IsEqualTo(System.Drawing.Color,System.Drawing.Color,System.Single,DevComponents.Instrumentation.GradientFillType,System.Drawing.Color,System.Int32)">
+            <summary>
+            Determines if the fillcolor is equal to the given one
+            </summary>
+            <param name="begin"></param>
+            <param name="end"></param>
+            <param name="angle"></param>
+            <param name="gradientFill"></param>
+            <param name="borderColor"></param>
+            <param name="borderWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GradientFillColor.Color1">
+            <summary>
+            Gets or sets the beginning gradient Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GradientFillColor.Color2">
+            <summary>
+            Gets or sets the ending gradient Color
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GradientFillColor.BorderColor">
+            <summary>
+            Gets or sets the border Color
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GradientFillColor.BorderWidth">
+            <summary>
+            Gets or sets the border width
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.GradientFillColor.GradientFillType">
+            <summary>
+            Gets or sets the Gradient FillType
+            </summary>
+        </member>
+        <member name="T:DevComponents.RemindForm">
+            <summary>
+            Summary description for RemindForm.
+            </summary>
+        </member>
+        <member name="M:DevComponents.RemindForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:DevComponents.RemindForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.#ctor(DevComponents.Instrumentation.KnobControl)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="knobControl">Associated knob control</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.ApplyColor(DevComponents.Instrumentation.Primitives.LinearGradientColorTable,DevComponents.Instrumentation.Primitives.LinearGradientColorTable)">
+            <summary>
+            ApplyColor
+            </summary>
+            <param name="c"></param>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.ConfigureKnob(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Main control configuration routine
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.ResetKnob">
+            <summary>
+            Sets the reset state to true, signifying
+            that the control needs to be reconfigured
+            before it is redrawn to the screen
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.InitRender(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Initializes the rendering process by making
+            sure that the control is reconfigured if
+            necessary
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.RenderTickMinor(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the minor tick marks
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.GetMinorTickPoints(System.Int32)">
+            <summary>
+            Calculates a series of points
+            that defines the tick mark
+            </summary>
+            <param name="tick">Tick to calculate</param>
+            <returns>An array of points that defines the tick</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.RenderTickMajor(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the Major Tick marks
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.GetMajorTickPoints(System.Int32)">
+            <summary>
+            Calculates a series of points
+            that defines the tick mark
+            </summary>
+            <param name="tick">Tick to calculate</param>
+            <returns>An array of points that defines the tick</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.RenderTickLabel(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the major tick label
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.RenderFocusRect(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the base focus rect
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.GetValueFromPoint(System.Drawing.Point)">
+            <summary>
+            Determines the control Value from
+            a specified Point on the control
+            </summary>
+            <param name="pt">Point on the control</param>
+            <returns>Value</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.CalculateTicksCounts">
+            <summary>
+            Calculate how many major and
+            minor ticks are presented on the control
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.MeasureTickLabels">
+            <summary>
+            Measure the width of each text label in order to
+            make sure we have room for it in the control
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.GetTickDegree(System.Single,System.Int32)">
+            <summary>
+            Gets the arc degree associated with
+            the given gauge tick
+            </summary>
+            <param name="tickAmount">Major or minor tick amount</param>
+            <param name="tick">The tick to convert</param>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.GetRadians(System.Single)">
+            <summary>
+            Converts Degrees to Radians
+            </summary>
+            <param name="theta">Degrees</param>
+            <returns>Radians</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.GetDegrees(System.Double)">
+            <summary>
+            Converts Radians to Degrees
+            </summary>
+            <param name="radians">Radians</param>
+            <returns>Degrees</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.PointInControl(System.Drawing.Point)">
+            <summary>
+            Determines if a given Point is within
+            the bounds of the control
+            </summary>
+            <param name="pt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.BaseKnob.PointInCircle(System.Drawing.Point,System.Drawing.Point,System.Int32)">
+            <summary>
+            Determines if a given point is within a given circle
+            </summary>
+            <param name="pt">Point in question</param>
+            <param name="cpt">Center Point</param>
+            <param name="radius">Circle radius</param>
+            <returns></returns>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.MajorTickColor">
+            <summary>
+            MajorTickColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.MinorTickColor">
+            <summary>
+            MinorTickColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.KnobIndicatorPointerBorderColor">
+            <summary>
+            KnobIndicatorPointerBorderColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.KnobIndicatorPointerBorderWidth">
+            <summary>
+            KnobIndicatorPointerBorderWidth
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.KnobIndicatorPointerColor">
+            <summary>
+            KnobIndicatorPointerColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.ZoneIndicatorColor">
+            <summary>
+            ZoneIndicatorBaseColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.KnobFaceColor">
+            <summary>
+            KnobFaceColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.KnobIndicatorColor">
+            <summary>
+            KnobIndicatorColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.LeftZoneIndicatorColor">
+            <summary>
+            LeftZoneIndicatorColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.MiddleZoneIndicatorColor">
+            <summary>
+            MiddleZoneIndicatorColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.RightZoneIndicatorColor">
+            <summary>
+            RightZoneIndicatorColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.TickLabelFormat">
+            <summary>
+            MajorTickColor
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Primitives.BaseKnob.ValueCount">
+            <summary>
+            Gets the value range, expressed as a count
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.ColorFactory.GetColor(System.String)">
+            <summary>
+            Converts hex string to Color type.
+            </summary>
+            <param name="rgbHex">Hexadecimal color representation.</param>
+            <returns>Reference to Color object.</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.ColorFactory.GetColor(System.Int32)">
+            <summary>
+            Converts hex string to Color type.
+            </summary>
+            <param name="rgb">Color representation as 32-bit RGB value.</param>
+            <returns>Reference to Color object.</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.ColorFactory.GetColor(System.Int32,System.Int32)">
+            <summary>
+            Converts hex string to Color type.
+            </summary>
+            <param name="alpha"></param>
+            <param name="rgb">Color representation as 32-bit RGB value.</param>
+            <returns>Reference to Color object.</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobColorTable.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobColorTable.KnobColorTableChanged(System.Object,System.EventArgs)">
+            <summary>
+            KnobColorTableChanged
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobColorTable.OnColorTableChange">
+            <summary>
+            OnColorTableChange
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobColorTable.ColorTableChanged">
+            <summary>
+            Event raised when ColorTable has changed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.MajorTickColor">
+            <summary>
+            Gets or sets the color of the Major Tick marks
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.MinorTickColor">
+            <summary>
+            Gets or sets the color of the Minor Tick marks
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.KnobIndicatorPointerBorderColor">
+            <summary>
+            Gets or sets the color of the KnobIndicatorPointer Border
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.KnobIndicatorPointerBorderWidth">
+            <summary>
+            Gets or sets the width of the KnobIndicatorPointer Border
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.KnobIndicatorPointerColor">
+            <summary>
+            Gets or sets the color of the KnobIndicatorPointer
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.ZoneIndicatorColor">
+            <summary>
+            Gets or sets the color of the ZoneIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.KnobFaceColor">
+            <summary>
+            Gets or sets the color of the KnobFace
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.KnobIndicatorColor">
+            <summary>
+            Gets or sets the color of the KnobIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.MinZoneIndicatorColor">
+            <summary>
+            Gets or sets the color of the MinZoneIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.MaxZoneIndicatorColor">
+            <summary>
+            Gets or sets the color of the MaxZoneIndicator
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobColorTable.MidZoneIndicatorColor">
+            <summary>
+            Gets or sets the color of the MidZoneIndicator
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.KnobColorTableConvertor">
+            <summary>
+            KnobColorTableConvertor
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobColorTableConvertor.MyColorConverter(DevComponents.Instrumentation.Primitives.LinearGradientColorTable,System.Drawing.ColorConverter)">
+            <summary>
+            MyColorConverter
+            </summary>
+            <param name="ct">ColorTable</param>
+            <param name="cvt">ColorConverter</param>
+            <returns>string or null</returns>
+        </member>
+        <member name="T:DevComponents.Instrumentation.KnobControl">
+            <summary>
+            Defines Knob instrumentation control.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ShouldSerializeKnobColor">
+            <summary>
+            Gets whether property should be serialized
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ResetKnobColor">
+            <summary>
+            Resets property to it's default value
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.SetKnobStyle(DevComponents.Instrumentation.eKnobStyle)">
+            <summary>
+            Sets the display style for the control
+            </summary>
+            <param name="style"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ShouldSerializeMajorTickAmount">
+            <summary>
+            Gets whether property should be serialized
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ResetMajorTickAmount">
+            <summary>
+            Resets property to it's default value
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ShouldSerializeMaxValue">
+            <summary>
+            Gets whether property should be serialized
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ResetMaxValue">
+            <summary>
+            Resets property to it's default value
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ShouldSerializeMinorTickAmount">
+            <summary>
+            Gets whether property should be serialized
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ResetMinorTickAmount">
+            <summary>
+            Resets property to it's default value
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ShouldSerializeMinValue">
+            <summary>
+            Gets whether property should be serialized
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ResetMinValue">
+            <summary>
+            Resets property to it's default value
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ShouldSerializeValue">
+            <summary>
+            Gets whether property should be serialized
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.ResetValue">
+            <summary>
+            Resets property to it's default value
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.HookEvents(System.Boolean)">
+            <summary>
+            Hooks or unhooks needed events
+            </summary>
+            <param name="hook">true to hook</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.KnobControl_Resize(System.Object,System.EventArgs)">
+            <summary>
+            Control Resize processing
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnGotFocus(System.EventArgs)">
+            <summary>
+            Handles control GotFocus
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnLostFocus(System.EventArgs)">
+            <summary>
+            Handles control GotFocus
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnValueChanged(System.Decimal,System.Decimal)">
+            <summary>
+            Called when the control 'Value' is changed
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnColorTableChanged">
+            <summary>
+            Called when the Knob ColorTable has changed
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Paints the contents of the control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderZoneIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            RenderZoneIndicator
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderTickMinor(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            RenderTickMinor
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderTickMajor(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            RenderTickMajor
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderTickLabel(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            RenderTickLabel
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderKnobFace(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            RenderKnobFace
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderKnobIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            RenderKnobIndicator
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderFocusRectangle(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            RenderFocusRectangle
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.RenderPart(System.Windows.Forms.PaintEventArgs,System.Drawing.Rectangle,DevComponents.Instrumentation.KnobControl.PreRenderEventHandler,DevComponents.Instrumentation.KnobControl.PostRenderEventHandler,DevComponents.Instrumentation.KnobControl.InternalRender)">
+            <summary>
+            Renders an individual 'part' of the control knob
+            </summary>
+            <param name="e"></param>
+            <param name="bounds">Bounding rectangle</param>
+            <param name="preRender">User PreRender callout</param>
+            <param name="postRender">User PostRender callout</param>
+            <param name="internalRender">Internal render callout</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.IsInputKey(System.Windows.Forms.Keys)">
+            <summary>
+            Routine to signify that the directional keys
+            (up/down/left/right) are special input keys
+            </summary>
+            <param name="key"></param>
+            <returns>true if the key is an input key</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Handles knob rotation via key input
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.AdjustValue(System.Decimal)">
+            <summary>
+            Adjusts the Value via the keyboard or mouse
+            </summary>
+            <param name="delta"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.GetDelta(System.Windows.Forms.Keys,System.Boolean)">
+            <summary>
+            Calculates the delta adjustment for the
+            pos or neg increment with respect to the
+            supplied modifiers (Control/Shift)
+            </summary>
+            <param name="mods">Keys.Control and/or Keys.Shift</param>
+            <param name="inc">Denotes whether to increment or decrement</param>
+            <returns>Signed delta value</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            MouseDown processing
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            MouseUp processing
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            MouseMove processing
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Handles MouseWheel events
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.InvalidateKnob">
+            <summary>
+            Invalidates the knob
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.GetValueFromPoint(System.Drawing.Point)">
+            <summary>
+            Gets the Knob value from the given Point
+            </summary>
+            <param name="pt">Point</param>
+            <returns>Value</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.System#IDisposable#Dispose">
+            <summary>
+            IDisposable.Dispose
+            </summary>
+        </member>
+        <member name="F:DevComponents.Instrumentation.KnobControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.KnobControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PreRenderZoneIndicator">
+            <summary>
+            Event raised just before the ZoneIndicator is rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PreRenderTickMinor">
+            <summary>
+            Event raised just before the Minor Tick Marks are rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PreRenderTickMajor">
+            <summary>
+            Event raised just before the Major Tick Marks are rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PreRenderTickLabel">
+            <summary>
+            Event raised just before the Tick Labels are rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PreRenderKnobFace">
+            <summary>
+            Event raised just before the KnobFace is rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PreRenderKnobIndicator">
+            <summary>
+            Event raised just before the KnobIndicator is rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PostRenderZoneIndicator">
+            <summary>
+            Event raised right after the ZoneIndicator is rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PostRenderTickMinor">
+            <summary>
+            Event raised right after the Minor Tick Marks are rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PostRenderTickMajor">
+            <summary>
+            Event raised right after the Major Tick Marks are rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PostRenderTickLabel">
+            <summary>
+            Event raised right after the Tick Labels are rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PostRenderKnobFace">
+            <summary>
+            Event raised right after the KnobFace is rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.PostRenderKnobIndicator">
+            <summary>
+            Event raised right after the KnobIndicator is rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.RenderFocusRect">
+            <summary>
+            Event raised when the Focus Rectangle needs rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.ValueChanged">
+            <summary>
+            Event raised when the Focus Rectangle needs rendered
+            </summary>
+        </member>
+        <member name="E:DevComponents.Instrumentation.KnobControl.ColorTableChanged">
+            <summary>
+            Event raised when the Knob ColorTable has changed
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.AllowDecimalValueSelection">
+            <summary>
+            Gets and sets whether Values with decimals can be used
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.FocusCuesEnabled">
+            <summary>
+            Gets or sets whether control displays focus cues when focused.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.Font">
+            <summary>
+            Gets or sets the KnobControl Font
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.IgnoreKeyLimits">
+            <summary>
+            Gets and sets whether key processing will ignore or
+            stop at knob min/max limits (default is 'false').
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.KnobColor">
+            <summary>
+            Gets and sets the display Colors of the KnobControl
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.KnobStyle">
+            <summary>
+            Gets and sets the display style of the knob
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.MinZonePercentage">
+            <summary>
+            Get and sets the numeric value that
+            represents the MinZoneIndicator percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.MajorTickAmount">
+            <summary>
+            Gets and sets the amount each
+            major tick represents on the knob
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.MaxValue">
+            <summary>
+            Get and sets the upper limit of the knob range
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.MinorTickAmount">
+            <summary>
+            Gets and sets the amount each
+            minor tick represents on the knob
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.MinValue">
+            <summary>
+            Gets and sets the lower limit of the knob range
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.MaxZonePercentage">
+            <summary>
+            Get and sets the numeric value that
+            represents the MaxZoneIndicator percentage
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.ReadOnly">
+            <summary>
+            Get and sets the (user access) ReadOnly state of the control
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.SelectionDecimals">
+            <summary>
+            Gets and sets the number of selection decimals. This is used in conjunction with AllowDecimalValueSelection.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.SelectionDelta">
+            <summary>
+            Gets or sets the delta value used to adjust the knob Value, when
+            the user presses the up or down arrow keys. (0 signifies use of 
+            SelectionDecimals precision as default delta value.)
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.SetValueOnFocus">
+            <summary>
+            Gets and sets whether the knob Value will be set when
+            knob is given focus via mouse selection.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.StartAngle">
+            <summary>
+            Gets and sets the angle measured
+            from the x-axis to the starting point of the gauge zone
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.SweepAngle">
+            <summary>
+            Get and sets the angle measured from the StartAngle to the ending point of the gauge zone.
+            Positive values signify clockwise rotation; negative values, counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.TickLabelFormat">
+            <summary>
+            Get and sets the .Net Numeric Format String
+            specifier to be used for the numeric knob tick labels.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.KnobControl.Value">
+            <summary>
+            Gets and sets the numeric value that
+            represents the current position of the knob selector
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.eKnobStyle">
+            <summary>
+            Various Knob Control display styles
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PreRenderEventArgs">
+            <summary>
+            PreRenderEventArgs - user cancellable
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.PreRenderEventArgs.#ctor(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Rectangle)">
+            <summary>
+            PreRenderEventArgs
+            </summary>
+            <param name="graphics"></param>
+            <param name="clipRectangle"></param>
+            <param name="bounds"></param>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderEventArgs.Graphics">
+            <summary>
+            Gets the event Graphics object
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderEventArgs.ClipRectangle">
+            <summary>
+            Gets the event ClipRectangle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PreRenderEventArgs.Bounds">
+            <summary>
+            Gets the event Bounds
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.PostRenderEventArgs">
+            <summary>
+            PostRenderEventArgs
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.PostRenderEventArgs.#ctor(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Rectangle)">
+            <summary>
+            PostRenderEventArgs
+            </summary>
+            <param name="graphics"></param>
+            <param name="clipRectangle"></param>
+            <param name="bounds"></param>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderEventArgs.Graphics">
+            <summary>
+            Gets the event Graphics object
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderEventArgs.ClipRectangle">
+            <summary>
+            Gets the event ClipRectangle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.PostRenderEventArgs.Bounds">
+            <summary>
+            Gets the event Bounds
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.RenderFocusRectEventArgs">
+            <summary>
+            RenderFocusRectEventArgs
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.RenderFocusRectEventArgs.#ctor(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Rectangle)">
+            <summary>
+            RenderFocusRectEventArgs
+            </summary>
+            <param name="graphics"></param>
+            <param name="clipRectangle"></param>
+            <param name="bounds"></param>
+        </member>
+        <member name="P:DevComponents.Instrumentation.RenderFocusRectEventArgs.Graphics">
+            <summary>
+            Gets the event Graphics object
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.RenderFocusRectEventArgs.ClipRectangle">
+            <summary>
+            Gets the event ClipRectangle
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.RenderFocusRectEventArgs.Bounds">
+            <summary>
+            Gets the event Bounds
+            </summary>
+        </member>
+        <member name="T:DevComponents.Instrumentation.ValueChangedEventArgs">
+            <summary>
+            ValueChangedEventArgs
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.ValueChangedEventArgs.#ctor(System.Decimal,System.Decimal)">
+            <summary>
+            ValueChangedEventArgs
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.ValueChangedEventArgs.OldValue">
+            <summary>
+            Gets the old value
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.ValueChangedEventArgs.NewValue">
+            <summary>
+            Gets the new value
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle1.#ctor(DevComponents.Instrumentation.KnobControl)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="knobControl">Associated knob control</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle1.ConfigureKnob(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Configures the given knob control
+            by establishing various default object parameters
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle1.CalculateBoundingRects">
+            <summary>
+            Calculates several default control
+            // bounding rectangles
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle1.RenderZoneIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the zone indicator
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle1.RenderKnobFace(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob face
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle1.RenderKnobIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob face
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle1.GetIndicatorRect">
+            <summary>
+            Returns the knob indicator rectangle
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.#ctor(DevComponents.Instrumentation.KnobControl)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="knobControl">Associated knob control</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.ConfigureKnob(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Configures the given knob control
+            by establishing various default object parameters
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.CalculateBoundingRects">
+            <summary>
+            Calculates several default control
+            // bounding rectangles
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.RenderZoneIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the zone indicator
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.RenderTickMinor(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the minor tick marks
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.GetMinorTickPoints(System.Int32)">
+            <summary>
+            Calculates a series of points
+            that defines the tick mark
+            </summary>
+            <param name="tick">Tick to calculate</param>
+            <returns>An array of points that defines the tick</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.RenderKnobFace(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob face
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.RenderKnobIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob face
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle2.GetIndicatorPoints">
+            <summary>
+            Calculates a series of points that
+            defines the indicator arrow
+            </summary>
+            <returns>An array of defining points</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.#ctor(DevComponents.Instrumentation.KnobControl)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="knobControl">Associated knob control</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.ConfigureKnob(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Configures the given knob control
+            by establishing various default object parameters
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.CalculateBoundingRects">
+            <summary>
+            Calculates several default control
+            // bounding rectangles
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderZoneIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the zone indicator
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderArc(System.Drawing.Graphics,System.Single,System.Single,DevComponents.Instrumentation.Primitives.LinearGradientColorTable)">
+            <summary>
+            Renders a gradient indicator arc by dividing
+            the arc into sub-arcs, enabling us to utilize normal
+            rectangle gradient support
+            </summary>
+            <param name="g"></param>
+            <param name="a1">Starting angle</param>
+            <param name="s1">Sweep angle</param>
+            <param name="ct"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.CalcCoord(System.Single)">
+            <summary>
+            Calculates the arc coordinates for 
+            a given angle
+            </summary>
+            <param name="a2">Angle</param>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderTickMinor(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the minor tick marks
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.GetMinorTickPoints(System.Int32)">
+            <summary>
+            Calculates a series of points
+            that defines the tick mark
+            </summary>
+            <param name="tick">Tick to calculate</param>
+            <returns>An array of points that defines the tick</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderTickMajor(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the Major Tick marks
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.GetMajorTickPoints(System.Int32)">
+            <summary>
+            Calculates a series of points
+            that defines the tick mark
+            </summary>
+            <param name="tick">Tick to calculate</param>
+            <returns>An array of points that defines the tick</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderKnobFace(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob face
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderInset(System.Drawing.Graphics,System.Drawing.Drawing2D.GraphicsPath,System.Drawing.Pen,System.Int32)">
+            <summary>
+            Renders the face, including the arc insets
+            as well as the connecting segments
+            </summary>
+            <param name="g"></param>
+            <param name="path">Path to render to</param>
+            <param name="pen">Outlining pen</param>
+            <param name="offset">Delta offset - used for shadowing</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.GetArcPoint(System.Drawing.Rectangle,System.Single,System.Int32)">
+            <summary>
+            Calculates the arc point at the given
+            degree and offset
+            </summary>
+            <param name="rInset">Inset bounding rectangle</param>
+            <param name="degree">Degree to position arc inset</param>
+            <param name="offset">Offset (used for shading)</param>
+            <returns></returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderKnobIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob face
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderIndCrescent(System.Drawing.Graphics,System.Drawing.Drawing2D.GraphicsPath,System.Drawing.Rectangle)">
+            <summary>
+            Renders the hilight crescent
+            </summary>
+            <param name="g"></param>
+            <param name="path">Accumulating GraphicsPath</param>
+            <param name="r">Bounding rectangle</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.RenderIndFace(System.Drawing.Graphics,System.Drawing.Drawing2D.GraphicsPath,System.Drawing.Rectangle)">
+            <summary>
+            Renders the face of the knob indicator
+            </summary>
+            <param name="g"></param>
+            <param name="path">Accumulating GraphicsPath</param>
+            <param name="r">Bounding rectangle</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle3.GetIndicatorPoints">
+            <summary>
+            Calculates a series of points that
+            defines the indicator arrow
+            </summary>
+            <returns>An array of defining points</returns>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle4.#ctor(DevComponents.Instrumentation.KnobControl)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="knobControl">Associated knob control</param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle4.ConfigureKnob(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Configures the given knob control
+            by establishing various default object parameters
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle4.CalculateBoundingRects">
+            <summary>
+            Calculates several default control
+            // bounding rectangles
+            </summary>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle4.RenderZoneIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the zone indicator
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle4.RenderKnobFace(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob face
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle4.RenderKnobIndicator(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Renders the knob indicator
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DevComponents.Instrumentation.Primitives.KnobStyle4.GetIndicatorPoints">
+            <summary>
+            Calculates a series of points that
+            defines the indicator arrow
+            </summary>
+            <returns>An array of defining points</returns>
+        </member>
+        <member name="T:DevComponents.Instrumentation.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:DevComponents.Instrumentation.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
