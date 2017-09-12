@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using System.IO.Ports;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 
 namespace MotorContorl
 {
@@ -21,10 +15,14 @@ namespace MotorContorl
         public List<byte> buffer = new List<byte>(1024);     // 定义串口数据缓存
         public static byte[] binary_data_1 = new byte[128];
         string path = string.Empty;                          //文件路径
-        private byte[] sendData = new byte[12];              //发送数据帧为：55 AA 01 06 50 04 05 02 01 01 XOR F0
+        //55 AA 01 0B 50 0A 05 02 01 01 00 0B 00 0C 00 03 XOR F0 // 加入PID 控制 加6个字节
+        private byte[] sendData = new byte[18];              //发送数据帧为：55 AA 01 06 50 04 05 02 01 01 XOR F0 ;
         bool isMotorWork = false;
         string time;
         string fileName;
+
+        //PID控制
+        short sKp = 0, sKi = 0, sKd = 0; double dKp = 0.00, dKi = 0.00, dKd = 0.00;
 
 
         public Form1()
@@ -46,14 +44,20 @@ namespace MotorContorl
             tbMotorSpeed.Text = "5";
             disableBtn();
 
-            //初始化数据帧
+            //初始化发送数据帧
             sendData[0] = 0x55;
             sendData[1] = 0xAA;
             sendData[2] = 0x01;
             sendData[3] = 0x06; //长度位
             sendData[4] = 0x50; //开始
             sendData[5] = 0x04; //命令段长度
-            sendData[11] = 0xF0;
+            sendData[10] = 0x00;//Kp系数符号位和整数部分数据位
+            sendData[11] = 0x00;//Kp系数小数部分数据位 
+            sendData[12] = 0x00;//Ki系数符号位和整数部分数据位
+            sendData[13] = 0x00;//Ki系数小数部分数据位
+            sendData[14] = 0x00;//Kd系数符号位和整数部分数据位
+            sendData[15] = 0x00;//Kd系数小数部分数据位  
+            sendData[17] = 0xF0;//尾帧
         }
 
 
@@ -382,7 +386,7 @@ namespace MotorContorl
             }
             catch (Exception ee)
             {
-                MessageBox.Show("输入的数据太大，不能超过255！请重新输入");
+                MessageBox.Show(ee.Message,"错误提示！");
                 sendData[9] = 0x00;
                 return;
             }
@@ -434,7 +438,72 @@ namespace MotorContorl
         {
 
         }
+       
+        private void sliderKp_ValueChanged(object sender, EventArgs e)
+        {
+            sKp = Convert.ToInt16(sliderKp.Value);
+            nudkpflt.Value = (decimal)sKp;
+            //Console.WriteLine(sKp);
+        }
+
+        private void nudkpflt_ValueChanged(object sender, EventArgs e)
+        {
+            dKp = Convert.ToDouble(nudkpflt.Value);
+            if (dKp >= 10)
+            {
+                nudkpflt.Value = 10.00m;
+            }
+            if (dKp <= -10)
+            {
+                nudkpflt.Value = -10.00m;
+            }
+            nudkpflt.Value = (decimal)dKp;
+            sliderKp.Value =Convert.ToInt32(dKp);
+            Console.WriteLine(dKp);  
+        }
+
+        private void sliderKi_ValueChanged(object sender, EventArgs e)
+        {
+            sKi = Convert.ToInt16(sliderKi.Value);
+            nudkiflt.Value = (decimal)sKi;
+        }
+
+        private void nudkiflt_ValueChanged(object sender, EventArgs e)
+        {
+            dKi = Convert.ToDouble(nudkiflt.Value);
+            if (dKi >= 10)
+            {
+                nudkiflt.Value = 10.00m;
+            }
+            if (dKi <= -10)
+            {
+                nudkiflt.Value = -10.00m;
+            }
+            nudkiflt.Value = (decimal)dKi;
+            sliderKi.Value = Convert.ToInt32(dKi);
+            Console.WriteLine(dKi);
+        }
+
+        private void sliderKd_ValueChanged(object sender, EventArgs e)
+        {
+            sKd = Convert.ToInt16(sliderKd.Value);
+            nudkdflt.Value = (decimal)sKd;
+        }
+
+        private void nudkdflt_ValueChanged(object sender, EventArgs e)
+        {
+            dKd = Convert.ToDouble(nudkdflt.Value);
+            if (dKd >= 10)
+            {
+                nudkdflt.Value = 10.00m;
+            }
+            if (dKd <= -10)
+            {
+                nudkdflt.Value = -10.00m;
+            }
+            nudkdflt.Value = (decimal)dKd;
+            sliderKd.Value = Convert.ToInt32(dKd);
+            Console.WriteLine(dKd);
+        }
     }
-
-
 }

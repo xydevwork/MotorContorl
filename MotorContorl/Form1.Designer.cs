@@ -111,11 +111,26 @@
             this.rtbDspMsg = new System.Windows.Forms.RichTextBox();
             this.speedSlider = new DevComponents.DotNetBar.Controls.Slider();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.sliderKi = new DevComponents.DotNetBar.Controls.Slider();
+            this.sliderKd = new DevComponents.DotNetBar.Controls.Slider();
+            this.nudkpflt = new System.Windows.Forms.NumericUpDown();
+            this.nudkiflt = new System.Windows.Forms.NumericUpDown();
+            this.nudkdflt = new System.Windows.Forms.NumericUpDown();
+            this.sliderKp = new DevComponents.DotNetBar.Controls.Slider();
+            this.swBtnPID = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.ribbonControl1.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudkpflt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudkiflt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudkdflt)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // styleManager1
@@ -149,7 +164,7 @@
             this.ribbonControl1.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem1,
             this.qatCustomizeItem1});
-            this.ribbonControl1.Size = new System.Drawing.Size(687, 154);
+            this.ribbonControl1.Size = new System.Drawing.Size(683, 154);
             this.ribbonControl1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonControl1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
             this.ribbonControl1.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
@@ -178,7 +193,7 @@
             this.ribbonPanel1.Location = new System.Drawing.Point(0, 53);
             this.ribbonPanel1.Name = "ribbonPanel1";
             this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel1.Size = new System.Drawing.Size(687, 98);
+            this.ribbonPanel1.Size = new System.Drawing.Size(683, 98);
             // 
             // 
             // 
@@ -666,7 +681,7 @@
             this.groupBox1.Controls.Add(this.rbLocMode);
             this.groupBox1.Location = new System.Drawing.Point(5, 161);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(687, 49);
+            this.groupBox1.Size = new System.Drawing.Size(681, 49);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "步进电机转动模式";
@@ -687,7 +702,7 @@
             // 
             this.line1.Location = new System.Drawing.Point(5, 214);
             this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(687, 10);
+            this.line1.Size = new System.Drawing.Size(734, 10);
             this.line1.TabIndex = 26;
             this.line1.Text = "line1";
             // 
@@ -697,7 +712,7 @@
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(354, 234);
+            this.labelX1.Location = new System.Drawing.Point(12, 83);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(99, 21);
             this.labelX1.TabIndex = 4;
@@ -710,7 +725,7 @@
             // 
             this.tbMotorSpeed.Border.Class = "TextBoxBorder";
             this.tbMotorSpeed.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbMotorSpeed.Location = new System.Drawing.Point(459, 234);
+            this.tbMotorSpeed.Location = new System.Drawing.Point(117, 83);
             this.tbMotorSpeed.Name = "tbMotorSpeed";
             this.tbMotorSpeed.PreventEnterBeep = true;
             this.tbMotorSpeed.Size = new System.Drawing.Size(47, 21);
@@ -722,7 +737,7 @@
             // 
             this.btnStop.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnStop.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnStop.Location = new System.Drawing.Point(470, 382);
+            this.btnStop.Location = new System.Drawing.Point(114, 154);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -734,7 +749,7 @@
             // 
             this.btnStart.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnStart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnStart.Location = new System.Drawing.Point(354, 382);
+            this.btnStart.Location = new System.Drawing.Point(6, 154);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -748,7 +763,7 @@
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(15, 234);
+            this.labelX2.Location = new System.Drawing.Point(8, 32);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(66, 21);
             this.labelX2.TabIndex = 9;
@@ -762,7 +777,7 @@
             this.tbspeed.Border.Class = "TextBoxBorder";
             this.tbspeed.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tbspeed.Enabled = false;
-            this.tbspeed.Location = new System.Drawing.Point(96, 234);
+            this.tbspeed.Location = new System.Drawing.Point(89, 32);
             this.tbspeed.Name = "tbspeed";
             this.tbspeed.PreventEnterBeep = true;
             this.tbspeed.Size = new System.Drawing.Size(100, 21);
@@ -774,7 +789,7 @@
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(37, 284);
+            this.labelX3.Location = new System.Drawing.Point(30, 74);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(44, 21);
             this.labelX3.TabIndex = 11;
@@ -786,7 +801,7 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(26, 334);
+            this.labelX4.Location = new System.Drawing.Point(19, 122);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(55, 21);
             this.labelX4.TabIndex = 13;
@@ -799,7 +814,7 @@
             // 
             this.tbNumOfPulse.Border.Class = "TextBoxBorder";
             this.tbNumOfPulse.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbNumOfPulse.Location = new System.Drawing.Point(96, 334);
+            this.tbNumOfPulse.Location = new System.Drawing.Point(89, 122);
             this.tbNumOfPulse.Name = "tbNumOfPulse";
             this.tbNumOfPulse.PreventEnterBeep = true;
             this.tbNumOfPulse.Size = new System.Drawing.Size(100, 21);
@@ -812,7 +827,7 @@
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(37, 384);
+            this.labelX5.Location = new System.Drawing.Point(30, 170);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(44, 21);
             this.labelX5.TabIndex = 15;
@@ -825,7 +840,7 @@
             // 
             this.tbNumOfCircle.Border.Class = "TextBoxBorder";
             this.tbNumOfCircle.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbNumOfCircle.Location = new System.Drawing.Point(96, 384);
+            this.tbNumOfCircle.Location = new System.Drawing.Point(89, 170);
             this.tbNumOfCircle.Name = "tbNumOfCircle";
             this.tbNumOfCircle.PreventEnterBeep = true;
             this.tbNumOfCircle.Size = new System.Drawing.Size(100, 21);
@@ -836,7 +851,7 @@
             // 
             this.btnSendLoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSendLoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSendLoc.Location = new System.Drawing.Point(225, 382);
+            this.btnSendLoc.Location = new System.Drawing.Point(6, 192);
             this.btnSendLoc.Name = "btnSendLoc";
             this.btnSendLoc.Size = new System.Drawing.Size(75, 23);
             this.btnSendLoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -846,9 +861,9 @@
             // 
             // line2
             // 
-            this.line2.Location = new System.Drawing.Point(5, 422);
+            this.line2.Location = new System.Drawing.Point(5, 451);
             this.line2.Name = "line2";
-            this.line2.Size = new System.Drawing.Size(748, 23);
+            this.line2.Size = new System.Drawing.Size(681, 23);
             this.line2.TabIndex = 19;
             this.line2.Text = "line2";
             // 
@@ -856,7 +871,7 @@
             // 
             this.btnClnMsg.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnClnMsg.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClnMsg.Location = new System.Drawing.Point(589, 382);
+            this.btnClnMsg.Location = new System.Drawing.Point(117, 192);
             this.btnClnMsg.Name = "btnClnMsg";
             this.btnClnMsg.Size = new System.Drawing.Size(75, 23);
             this.btnClnMsg.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -877,7 +892,7 @@
             this.comboItem4,
             this.comboItem5,
             this.comboItem6});
-            this.cbSplit.Location = new System.Drawing.Point(96, 284);
+            this.cbSplit.Location = new System.Drawing.Point(89, 74);
             this.cbSplit.Name = "cbSplit";
             this.cbSplit.Size = new System.Drawing.Size(100, 21);
             this.cbSplit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -918,7 +933,7 @@
             // 
             this.motorTiming.Border.Class = "TextBoxBorder";
             this.motorTiming.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.motorTiming.Location = new System.Drawing.Point(459, 284);
+            this.motorTiming.Location = new System.Drawing.Point(117, 110);
             this.motorTiming.Name = "motorTiming";
             this.motorTiming.PreventEnterBeep = true;
             this.motorTiming.Size = new System.Drawing.Size(47, 21);
@@ -931,7 +946,7 @@
             // 
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(378, 284);
+            this.labelX6.Location = new System.Drawing.Point(36, 110);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(75, 21);
             this.labelX6.TabIndex = 27;
@@ -941,17 +956,25 @@
             // 
             this.groupBox2.Controls.Add(this.rbSigle);
             this.groupBox2.Controls.Add(this.rbContinuity);
-            this.groupBox2.Location = new System.Drawing.Point(354, 311);
+            this.groupBox2.Controls.Add(this.labelX1);
+            this.groupBox2.Controls.Add(this.tbMotorSpeed);
+            this.groupBox2.Controls.Add(this.motorTiming);
+            this.groupBox2.Controls.Add(this.labelX6);
+            this.groupBox2.Controls.Add(this.btnStart);
+            this.groupBox2.Controls.Add(this.btnClnMsg);
+            this.groupBox2.Controls.Add(this.btnSendLoc);
+            this.groupBox2.Controls.Add(this.btnStop);
+            this.groupBox2.Location = new System.Drawing.Point(224, 230);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(310, 44);
+            this.groupBox2.Size = new System.Drawing.Size(222, 221);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "测试模式";
+            this.groupBox2.Text = "速度模式";
             // 
             // rbSigle
             // 
             this.rbSigle.AutoSize = true;
-            this.rbSigle.Location = new System.Drawing.Point(154, 20);
+            this.rbSigle.Location = new System.Drawing.Point(118, 19);
             this.rbSigle.Name = "rbSigle";
             this.rbSigle.Size = new System.Drawing.Size(71, 16);
             this.rbSigle.TabIndex = 1;
@@ -972,10 +995,10 @@
             // 
             // rtbDspMsg
             // 
-            this.rtbDspMsg.Location = new System.Drawing.Point(5, 438);
+            this.rtbDspMsg.Location = new System.Drawing.Point(5, 470);
             this.rtbDspMsg.Name = "rtbDspMsg";
             this.rtbDspMsg.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtbDspMsg.Size = new System.Drawing.Size(687, 237);
+            this.rtbDspMsg.Size = new System.Drawing.Size(681, 205);
             this.rtbDspMsg.TabIndex = 31;
             this.rtbDspMsg.Text = "";
             this.rtbDspMsg.TextChanged += new System.EventHandler(this.rtbDspMsg_TextChanged);
@@ -986,43 +1009,211 @@
             // 
             // 
             this.speedSlider.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.speedSlider.Location = new System.Drawing.Point(514, 234);
+            this.speedSlider.Location = new System.Drawing.Point(236, 284);
             this.speedSlider.Maximum = 255;
             this.speedSlider.Name = "speedSlider";
             this.speedSlider.Size = new System.Drawing.Size(150, 23);
             this.speedSlider.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.speedSlider.TabIndex = 3;
-            this.speedSlider.Text = "转速";
+            this.speedSlider.Text = "调速";
             this.speedSlider.Value = 0;
             this.speedSlider.ValueChanged += new System.EventHandler(this.speedSlider_ValueChanged_1);
+            // 
+            // sliderKi
+            // 
+            // 
+            // 
+            // 
+            this.sliderKi.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sliderKi.Location = new System.Drawing.Point(6, 108);
+            this.sliderKi.Maximum = 10;
+            this.sliderKi.Minimum = -10;
+            this.sliderKi.Name = "sliderKi";
+            this.sliderKi.Size = new System.Drawing.Size(150, 23);
+            this.sliderKi.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sliderKi.TabIndex = 33;
+            this.sliderKi.Text = "Ki:";
+            this.sliderKi.Value = 0;
+            this.sliderKi.ValueChanged += new System.EventHandler(this.sliderKi_ValueChanged);
+            // 
+            // sliderKd
+            // 
+            // 
+            // 
+            // 
+            this.sliderKd.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sliderKd.Location = new System.Drawing.Point(6, 168);
+            this.sliderKd.Maximum = 10;
+            this.sliderKd.Minimum = -10;
+            this.sliderKd.Name = "sliderKd";
+            this.sliderKd.Size = new System.Drawing.Size(150, 23);
+            this.sliderKd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sliderKd.TabIndex = 34;
+            this.sliderKd.Text = "Kd:";
+            this.sliderKd.Value = 0;
+            this.sliderKd.ValueChanged += new System.EventHandler(this.sliderKd_ValueChanged);
+            // 
+            // nudkpflt
+            // 
+            this.nudkpflt.DecimalPlaces = 2;
+            this.nudkpflt.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudkpflt.Location = new System.Drawing.Point(170, 56);
+            this.nudkpflt.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudkpflt.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.nudkpflt.Name = "nudkpflt";
+            this.nudkpflt.Size = new System.Drawing.Size(55, 21);
+            this.nudkpflt.TabIndex = 38;
+            this.nudkpflt.ValueChanged += new System.EventHandler(this.nudkpflt_ValueChanged);
+            // 
+            // nudkiflt
+            // 
+            this.nudkiflt.DecimalPlaces = 2;
+            this.nudkiflt.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudkiflt.Location = new System.Drawing.Point(170, 108);
+            this.nudkiflt.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudkiflt.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.nudkiflt.Name = "nudkiflt";
+            this.nudkiflt.Size = new System.Drawing.Size(55, 21);
+            this.nudkiflt.TabIndex = 39;
+            this.nudkiflt.ValueChanged += new System.EventHandler(this.nudkiflt_ValueChanged);
+            // 
+            // nudkdflt
+            // 
+            this.nudkdflt.DecimalPlaces = 2;
+            this.nudkdflt.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudkdflt.Location = new System.Drawing.Point(170, 170);
+            this.nudkdflt.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudkdflt.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.nudkdflt.Name = "nudkdflt";
+            this.nudkdflt.Size = new System.Drawing.Size(55, 21);
+            this.nudkdflt.TabIndex = 40;
+            this.nudkdflt.ValueChanged += new System.EventHandler(this.nudkdflt_ValueChanged);
+            // 
+            // sliderKp
+            // 
+            // 
+            // 
+            // 
+            this.sliderKp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sliderKp.Location = new System.Drawing.Point(6, 54);
+            this.sliderKp.Maximum = 10;
+            this.sliderKp.Minimum = -10;
+            this.sliderKp.Name = "sliderKp";
+            this.sliderKp.Size = new System.Drawing.Size(150, 23);
+            this.sliderKp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sliderKp.TabIndex = 41;
+            this.sliderKp.Text = "Kp:";
+            this.sliderKp.Value = 0;
+            this.sliderKp.ValueChanged += new System.EventHandler(this.sliderKp_ValueChanged);
+            // 
+            // swBtnPID
+            // 
+            // 
+            // 
+            // 
+            this.swBtnPID.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.swBtnPID.Location = new System.Drawing.Point(111, 19);
+            this.swBtnPID.Name = "swBtnPID";
+            this.swBtnPID.Size = new System.Drawing.Size(66, 22);
+            this.swBtnPID.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.swBtnPID.TabIndex = 42;
+            // 
+            // labelX7
+            // 
+            // 
+            // 
+            // 
+            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX7.Location = new System.Drawing.Point(6, 20);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(99, 21);
+            this.labelX7.TabIndex = 43;
+            this.labelX7.Text = "PID控制开关：";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.labelX7);
+            this.groupBox3.Controls.Add(this.nudkdflt);
+            this.groupBox3.Controls.Add(this.sliderKp);
+            this.groupBox3.Controls.Add(this.sliderKd);
+            this.groupBox3.Controls.Add(this.nudkiflt);
+            this.groupBox3.Controls.Add(this.swBtnPID);
+            this.groupBox3.Controls.Add(this.nudkpflt);
+            this.groupBox3.Controls.Add(this.sliderKi);
+            this.groupBox3.Location = new System.Drawing.Point(452, 230);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.groupBox3.Size = new System.Drawing.Size(234, 221);
+            this.groupBox3.TabIndex = 44;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "PID控制";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.tbspeed);
+            this.groupBox4.Controls.Add(this.labelX2);
+            this.groupBox4.Controls.Add(this.cbSplit);
+            this.groupBox4.Controls.Add(this.labelX3);
+            this.groupBox4.Controls.Add(this.labelX4);
+            this.groupBox4.Controls.Add(this.tbNumOfPulse);
+            this.groupBox4.Controls.Add(this.labelX5);
+            this.groupBox4.Controls.Add(this.tbNumOfCircle);
+            this.groupBox4.Location = new System.Drawing.Point(5, 230);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(213, 221);
+            this.groupBox4.TabIndex = 45;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "位置模式";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 678);
+            this.ClientSize = new System.Drawing.Size(693, 676);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.speedSlider);
             this.Controls.Add(this.rtbDspMsg);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.motorTiming);
-            this.Controls.Add(this.labelX6);
-            this.Controls.Add(this.cbSplit);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnClnMsg);
             this.Controls.Add(this.line2);
-            this.Controls.Add(this.btnSendLoc);
-            this.Controls.Add(this.tbNumOfCircle);
-            this.Controls.Add(this.labelX5);
-            this.Controls.Add(this.tbNumOfPulse);
-            this.Controls.Add(this.labelX4);
-            this.Controls.Add(this.labelX3);
-            this.Controls.Add(this.tbspeed);
-            this.Controls.Add(this.labelX2);
-            this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.tbMotorSpeed);
-            this.Controls.Add(this.labelX1);
             this.Controls.Add(this.ribbonControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -1035,6 +1226,11 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudkpflt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudkiflt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudkdflt)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1122,6 +1318,16 @@
         private System.Windows.Forms.RichTextBox rtbDspMsg;
         private DevComponents.DotNetBar.Controls.Slider speedSlider;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private DevComponents.DotNetBar.Controls.Slider sliderKi;
+        private DevComponents.DotNetBar.Controls.Slider sliderKd;
+        private System.Windows.Forms.NumericUpDown nudkpflt;
+        private System.Windows.Forms.NumericUpDown nudkiflt;
+        private System.Windows.Forms.NumericUpDown nudkdflt;
+        private DevComponents.DotNetBar.Controls.Slider sliderKp;
+        private DevComponents.DotNetBar.Controls.SwitchButton swBtnPID;
+        private DevComponents.DotNetBar.LabelX labelX7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
 
