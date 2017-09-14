@@ -13,17 +13,19 @@ namespace MotorContorl
     {
         string[] ports = SerialPort.GetPortNames();          // 获取串口连接列表
         public List<byte> buffer = new List<byte>(1024);     // 定义串口数据缓存
-        public static byte[] binary_data_1 = new byte[128];
+        //public static byte[] binary_data_1 = new byte[128];
         string path = string.Empty;                          //文件路径
-        //55 AA 01 0B 50 0A 05 02 01 01 00 0B 00 0C 00 03 XOR F0 // 加入PID 控制 加6个字节
-        private byte[] sendData = new byte[18];              //发送数据帧为：55 AA 01 06 50 04 05 02 01 01 XOR F0 ;
         bool isMotorWork = false;
-        string time;
+        string time;                                         //时间
         string fileName;
+        //55 AA 01 0D 50 0B 05 02 01 01 01 00 0B 00 0C 00 03 XOR F0 // 加入PID 控制 加7个字节
+        private byte[] sendData = new byte[19];              //发送数据帧为：55 AA 01 06 50 04 05 02 01 01 XOR F0 ;
 
         //PID控制
-        short sKp = 0, sKi = 0, sKd = 0; double dKp = 0.00, dKi = 0.00, dKd = 0.00;
-
+        short sKp = 0, sKi = 0, sKd = 0;
+        double dKp = 0.00, dKi = 0.00, dKd = 0.00;
+        float[] arrPID = new float[3];
+        byte[] pidCmd = new byte[7];
 
         public Form1()
         {
@@ -43,24 +45,24 @@ namespace MotorContorl
             tbspeed.Text = "0";
             tbMotorSpeed.Text = "5";
             disableBtn();
-
+            disablePIDCmd();
             //初始化发送数据帧
             sendData[0] = 0x55;
             sendData[1] = 0xAA;
             sendData[2] = 0x01;
-            sendData[3] = 0x06; //长度位
+            sendData[3] = 0x0D; //长度位
             sendData[4] = 0x50; //开始
-            sendData[5] = 0x04; //命令段长度
-            sendData[10] = 0x00;//Kp系数符号位和整数部分数据位
-            sendData[11] = 0x00;//Kp系数小数部分数据位 
-            sendData[12] = 0x00;//Ki系数符号位和整数部分数据位
-            sendData[13] = 0x00;//Ki系数小数部分数据位
-            sendData[14] = 0x00;//Kd系数符号位和整数部分数据位
-            sendData[15] = 0x00;//Kd系数小数部分数据位  
-            sendData[17] = 0xF0;//尾帧
+            sendData[5] = 0x0B; //命令段长度
+            sendData[8] = 0x01; //编码器测试模式选择命令
+
+            sendData[11] = 0x00;//Kp系数符号位和整数部分数据位
+            sendData[12] = 0x00;//Kp系数小数部分数据位 
+            sendData[13] = 0x00;//Ki系数符号位和整数部分数据位
+            sendData[14] = 0x00;//Ki系数小数部分数据位
+            sendData[15] = 0x00;//Kd系数符号位和整数部分数据位
+            sendData[16] = 0x00;//Kd系数小数部分数据位  
+            sendData[18] = 0xF0;//尾帧
         }
-
-
         /// <summary>
         /// 位置模式按钮使能
         /// </summary>
@@ -129,7 +131,6 @@ namespace MotorContorl
                 Process.Start(openFileDialog1.FileName);
             }
         }
-
         //电机转动模式选择
         private void rbLocMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -142,14 +143,12 @@ namespace MotorContorl
                 disableBtn();
             }
         }
-       
-        
-
+        //更新选中的串口的波特率
         private void cmbCmbBaurate_Click(object sender, EventArgs e)
         {
             serialPort1.BaudRate = int.Parse(cmbCmbBaurate.Text);
         }
-
+        //更新选中的串口号
         private void cmbComports_Click(object sender, EventArgs e)
         {
             serialPort1.PortName = cmbComports.Text;
@@ -164,8 +163,7 @@ namespace MotorContorl
             }
             isMotorWork = true;
             updataCheckBoxData();
-            this.serialPort1.Write(sendData, 0, 12);  //发送数据
-
+            this.serialPort1.Write(sendData, 0, 19);  //发送数据
             printLog(sendData);
         }
         //电机停止转动
@@ -178,7 +176,8 @@ namespace MotorContorl
             }
             isMotorWork = false;
             updataCheckBoxData();
-            this.serialPort1.Write(sendData, 0, 12);  //发送数据 
+            cleanPIDValue();
+            this.serialPort1.Write(sendData, 0, 19);  //发送数据 
 
             printLog(sendData);
             //Console.WriteLine(BitConverter.ToString(sendData)); //log 打印
@@ -334,11 +333,6 @@ namespace MotorContorl
                 MessageBox.Show("串口被关闭请稍后再试！");
             }
         }
-
-        private void tbMotorSpeed_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
         /// <summary>
         /// 获取从地址开始的异或校验
         /// </summary>
@@ -375,13 +369,18 @@ namespace MotorContorl
                 }
                 if (isMotorWork)
                 {
-                    sendData[9] = 0x01;                 //电机开始转动
+                    sendData[9] = 0x01;             //失能PID控制的，电机开始转动
                 }
                 else
                 {
                     sendData[9] = 0x00;
                 }
-                sendData[10] = Get_CheckXor(sendData, 12); //异或校验
+                PIDValueHandle();                   //读取PID数值
+                for(int i = 0; i < 7; i++)
+                {
+                    sendData[10 + i] = pidCmd[i];   //10-16
+                }
+                sendData[17] = Get_CheckXor(sendData, 19); //异或校验 55
 
             }
             catch (Exception ee)
@@ -433,77 +432,194 @@ namespace MotorContorl
                 return;
             }
         }
+        //Kp值粗调
+        float fsKp,fsKi,fsKd;
+        private void sliderKp_ValueChanged(object sender, EventArgs e)
+        {
+            sKp = Convert.ToInt16(sliderKp.Value);
+            fsKp = sKp / 100f;
+            nudkpflt.Value =(decimal)fsKp;
+        }
+        //Kp值微调
+        private void nudkpflt_ValueChanged(object sender, EventArgs e)
+        {
+            float fKptemp = Convert.ToSingle(nudkpflt.Value);
+            if (fKptemp > 5)
+            {
+                nudkpflt.Value = 5.00m;
+            }
+            if (fKptemp < -5)
+            {
+                nudkpflt.Value = -5.00m;
+            }
+            arrPID[0] = fKptemp;
+            Console.WriteLine(fKptemp);  
+        }
+        //Ki值粗调
+        private void sliderKi_ValueChanged(object sender, EventArgs e)
+        {
+            sKi = Convert.ToInt16(sliderKi.Value);
+            fsKi = sKi / 100f;
+            nudkiflt.Value = (decimal)fsKi;
+        }
+        //Ki值微调
+        private void nudkiflt_ValueChanged(object sender, EventArgs e)
+        {
+            float fKitemp = Convert.ToSingle(nudkiflt.Value);
+            if (fKitemp >5)
+            {
+                nudkiflt.Value = 5.00m;
+            }
+            if (fKitemp <-5)
+            {
+                nudkiflt.Value = -5.00m;
+            }
+            arrPID[1] = fKitemp;
+            Console.WriteLine(fKitemp);
+        }
+        //Kd值粗调
+        private void sliderKd_ValueChanged(object sender, EventArgs e)
+        {
+            sKd = Convert.ToInt16(sliderKd.Value);
+            fsKd = sKd / 100f;
+            nudkdflt.Value = (decimal)fsKd;
+        }
+        //Kd值微调
+        private void nudkdflt_ValueChanged(object sender, EventArgs e)
+        {
+            float fKdtemp = Convert.ToSingle(nudkdflt.Value);
+            if (fKdtemp > 5)
+            {
+                nudkdflt.Value = 5.00m;
+            }
+            if (fKdtemp < -5)
+            {
+                nudkdflt.Value = -5.00m;
+            }
+            arrPID[2] = fKdtemp;
+            Console.WriteLine(fKdtemp);
+        }
+        //失能PID控制按钮
+        private void disablePIDCmd()
+        {
+            pidCmd[0] = 0x00;   //失能PID控制
+            sliderKp.Enabled = false;
+            sliderKi.Enabled = false;
+            sliderKd.Enabled = false;
+            nudkpflt.Enabled = false;
+            nudkiflt.Enabled = false;
+            nudkdflt.Enabled = false;
+            cleanPIDValue();
+        }
+        //使能PID控制按钮
+        private void ablePIDCmd()
+        {
+            pidCmd[0] = 0x01;   //使能PID控制
+            sliderKp.Enabled = true;
+            sliderKi.Enabled = true;
+            sliderKd.Enabled = true;
+            nudkpflt.Enabled = true;
+            nudkiflt.Enabled = true;
+            nudkdflt.Enabled = true;
+        }
+        //PID值处理
+        private void PIDValueHandle() //[0]:使能位 [1:6] Kp、Ki、Kd 数据  11-16
+        {
+            float dkptemp = arrPID[0] * 100f;
+            float dkitemp = arrPID[1] * 100f;
+            float dkdtemp = arrPID[2] * 100f;
+            byte intKp = 0, intKi=0, intKd=0;
+            //完成极性赋值
+            pidCmd[1] = isPositive(dkptemp);
+            //pidCmd[1] <<= 4;
+            pidCmd[3] = isPositive(dkitemp);
+            //pidCmd[3] <<= 4;
+            pidCmd[5] = isPositive(dkdtemp);
+            //pidCmd[5] <<= 4;
+            if (dkptemp <0)
+            {
+                dkptemp *= -1;
+            }
+             if (dkitemp<0)
+            {
+                dkitemp *= -1;
+            }
+             if(dkdtemp<0)
+            {
+                dkdtemp *= -1;
+            }
+            //整数部分取值
+            intKp = Convert.ToByte((int)(dkptemp / 100) % 10);
+            intKi = Convert.ToByte((int)(dkitemp / 100) % 10);
+            intKd = Convert.ToByte((int)(dkdtemp / 100) % 10);
+            //PID符号和整数位赋值
+            pidCmd[1] += intKp;
+            pidCmd[3] += intKi;
+            pidCmd[5] += intKd;
+            //取小数部分
+            pidCmd[2]=Convert.ToByte(dkptemp % 100);
+            pidCmd[4] = Convert.ToByte(dkitemp % 100);
+            pidCmd[6] = Convert.ToByte(dkdtemp % 100);
+        }
+        //PID控制开关
+        private void swBtnPID_ValueChanged(object sender, EventArgs e)
+        {
+            if (swBtnPID.Value)
+            {
+                ablePIDCmd();
+
+            }
+            else
+            {
+                disablePIDCmd();
+                
+            }
+        }
+        //PID符号位赋值
+        private byte isPositive(double pidValue)
+        {
+            byte polarity ;
+            if (pidValue<0)
+            {
+                polarity = 0x10; //为负
+            }
+            else 
+            {
+                polarity = 0x00;//无符号
+            }
+            return polarity;
+        }
+        //清空PID数据
+        private void cleanPIDValue()
+        {
+            sendData[10] = 0;
+            sendData[11] = 0;
+            sendData[12] = 0;
+            sendData[13] = 0;
+            sendData[14] = 0;
+            sendData[15] = 0;
+            sendData[16] = 0;
+
+            if (!swBtnPID.Value||!isMotorWork)
+            {
+                nudkpflt.Value = 0;
+                nudkiflt.Value = 0;
+                nudkdflt.Value = 0;
+
+                sliderKp.Value = 0;
+                sliderKi.Value = 0;
+                sliderKd.Value = 0;
+            }
+        }
 
         private void ribbonTabItem1_Click(object sender, EventArgs e)
         {
 
         }
-       
-        private void sliderKp_ValueChanged(object sender, EventArgs e)
-        {
-            sKp = Convert.ToInt16(sliderKp.Value);
-            nudkpflt.Value = (decimal)sKp;
-            //Console.WriteLine(sKp);
-        }
 
-        private void nudkpflt_ValueChanged(object sender, EventArgs e)
+        private void tbMotorSpeed_TextChanged(object sender, EventArgs e)
         {
-            dKp = Convert.ToDouble(nudkpflt.Value);
-            if (dKp >= 10)
-            {
-                nudkpflt.Value = 10.00m;
-            }
-            if (dKp <= -10)
-            {
-                nudkpflt.Value = -10.00m;
-            }
-            nudkpflt.Value = (decimal)dKp;
-            sliderKp.Value =Convert.ToInt32(dKp);
-            Console.WriteLine(dKp);  
-        }
 
-        private void sliderKi_ValueChanged(object sender, EventArgs e)
-        {
-            sKi = Convert.ToInt16(sliderKi.Value);
-            nudkiflt.Value = (decimal)sKi;
-        }
-
-        private void nudkiflt_ValueChanged(object sender, EventArgs e)
-        {
-            dKi = Convert.ToDouble(nudkiflt.Value);
-            if (dKi >= 10)
-            {
-                nudkiflt.Value = 10.00m;
-            }
-            if (dKi <= -10)
-            {
-                nudkiflt.Value = -10.00m;
-            }
-            nudkiflt.Value = (decimal)dKi;
-            sliderKi.Value = Convert.ToInt32(dKi);
-            Console.WriteLine(dKi);
-        }
-
-        private void sliderKd_ValueChanged(object sender, EventArgs e)
-        {
-            sKd = Convert.ToInt16(sliderKd.Value);
-            nudkdflt.Value = (decimal)sKd;
-        }
-
-        private void nudkdflt_ValueChanged(object sender, EventArgs e)
-        {
-            dKd = Convert.ToDouble(nudkdflt.Value);
-            if (dKd >= 10)
-            {
-                nudkdflt.Value = 10.00m;
-            }
-            if (dKd <= -10)
-            {
-                nudkdflt.Value = -10.00m;
-            }
-            nudkdflt.Value = (decimal)dKd;
-            sliderKd.Value = Convert.ToInt32(dKd);
-            Console.WriteLine(dKd);
         }
     }
 }

@@ -658,7 +658,7 @@
             // buttonItem1
             // 
             this.buttonItem1.Name = "buttonItem1";
-            this.buttonItem1.Text = "buttonItem1";
+            this.buttonItem1.Text = "by欣杨科技有限公司";
             // 
             // qatCustomizeItem1
             // 
@@ -702,7 +702,7 @@
             // 
             this.line1.Location = new System.Drawing.Point(5, 214);
             this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(734, 10);
+            this.line1.Size = new System.Drawing.Size(683, 10);
             this.line1.TabIndex = 26;
             this.line1.Text = "line1";
             // 
@@ -1026,8 +1026,8 @@
             // 
             this.sliderKi.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.sliderKi.Location = new System.Drawing.Point(6, 108);
-            this.sliderKi.Maximum = 10;
-            this.sliderKi.Minimum = -10;
+            this.sliderKi.Maximum = 500;
+            this.sliderKi.Minimum = -500;
             this.sliderKi.Name = "sliderKi";
             this.sliderKi.Size = new System.Drawing.Size(150, 23);
             this.sliderKi.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1043,8 +1043,8 @@
             // 
             this.sliderKd.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.sliderKd.Location = new System.Drawing.Point(6, 168);
-            this.sliderKd.Maximum = 10;
-            this.sliderKd.Minimum = -10;
+            this.sliderKd.Maximum = 500;
+            this.sliderKd.Minimum = -500;
             this.sliderKd.Name = "sliderKd";
             this.sliderKd.Size = new System.Drawing.Size(150, 23);
             this.sliderKd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1132,8 +1132,8 @@
             // 
             this.sliderKp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.sliderKp.Location = new System.Drawing.Point(6, 54);
-            this.sliderKp.Maximum = 10;
-            this.sliderKp.Minimum = -10;
+            this.sliderKp.Maximum = 500;
+            this.sliderKp.Minimum = -500;
             this.sliderKp.Name = "sliderKp";
             this.sliderKp.Size = new System.Drawing.Size(150, 23);
             this.sliderKp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1153,6 +1153,7 @@
             this.swBtnPID.Size = new System.Drawing.Size(66, 22);
             this.swBtnPID.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.swBtnPID.TabIndex = 42;
+            this.swBtnPID.ValueChanged += new System.EventHandler(this.swBtnPID_ValueChanged);
             // 
             // labelX7
             // 
@@ -1215,8 +1216,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.ribbonControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "转台控制系统";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ribbonControl1.ResumeLayout(false);
             this.ribbonControl1.PerformLayout();
