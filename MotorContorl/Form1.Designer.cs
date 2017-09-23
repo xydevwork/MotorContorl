@@ -1132,8 +1132,8 @@
             // 
             this.sliderKp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.sliderKp.Location = new System.Drawing.Point(6, 54);
-            this.sliderKp.Maximum = 500;
-            this.sliderKp.Minimum = -500;
+            this.sliderKp.Maximum = 1000;
+            this.sliderKp.Minimum = -1000;
             this.sliderKp.Name = "sliderKp";
             this.sliderKp.Size = new System.Drawing.Size(150, 23);
             this.sliderKp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;

@@ -22,8 +22,9 @@ namespace MotorContorl
         private byte[] sendData = new byte[19];              //发送数据帧为：55 AA 01 06 50 04 05 02 01 01 XOR F0 ;
 
         //PID控制
+        bool isEnablePID = false;
         short sKp = 0, sKi = 0, sKd = 0;
-        double dKp = 0.00, dKi = 0.00, dKd = 0.00;
+       // double dKp = 0.00, dKi = 0.00, dKd = 0.00;
         float[] arrPID = new float[3];
         byte[] pidCmd = new byte[7];
 
@@ -55,6 +56,7 @@ namespace MotorContorl
             sendData[5] = 0x0B; //命令段长度
             sendData[8] = 0x01; //编码器测试模式选择命令
 
+            sendData[10] = 0x00;
             sendData[11] = 0x00;//Kp系数符号位和整数部分数据位
             sendData[12] = 0x00;//Kp系数小数部分数据位 
             sendData[13] = 0x00;//Ki系数符号位和整数部分数据位
@@ -177,6 +179,7 @@ namespace MotorContorl
             isMotorWork = false;
             updataCheckBoxData();
             cleanPIDValue();
+            sendData[17] = Get_CheckXor(sendData, 19); //异或校验 55
             this.serialPort1.Write(sendData, 0, 19);  //发送数据 
 
             printLog(sendData);
@@ -375,6 +378,14 @@ namespace MotorContorl
                 {
                     sendData[9] = 0x00;
                 }
+                if (isEnablePID)
+                {
+                    sendData[10] = 1;
+                }
+                else
+                {
+                    sendData[10] = 0;
+                }
                 PIDValueHandle();                   //读取PID数值
                 for(int i = 0; i < 7; i++)
                 {
@@ -444,13 +455,13 @@ namespace MotorContorl
         private void nudkpflt_ValueChanged(object sender, EventArgs e)
         {
             float fKptemp = Convert.ToSingle(nudkpflt.Value);
-            if (fKptemp > 5)
+            if (fKptemp > 10)
             {
-                nudkpflt.Value = 5.00m;
+                nudkpflt.Value = 10.00m;
             }
-            if (fKptemp < -5)
+            if (fKptemp < -10)
             {
-                nudkpflt.Value = -5.00m;
+                nudkpflt.Value = -10.00m;
             }
             arrPID[0] = fKptemp;
             Console.WriteLine(fKptemp);  
@@ -567,12 +578,14 @@ namespace MotorContorl
             if (swBtnPID.Value)
             {
                 ablePIDCmd();
+                isEnablePID = true;
+                
 
             }
             else
             {
                 disablePIDCmd();
-                
+                isEnablePID = false;
             }
         }
         //PID符号位赋值
@@ -592,7 +605,7 @@ namespace MotorContorl
         //清空PID数据
         private void cleanPIDValue()
         {
-            sendData[10] = 0;
+            //  sendData[10] = 0;
             sendData[11] = 0;
             sendData[12] = 0;
             sendData[13] = 0;
@@ -600,7 +613,7 @@ namespace MotorContorl
             sendData[15] = 0;
             sendData[16] = 0;
 
-            if (!swBtnPID.Value||!isMotorWork)
+            if (!swBtnPID.Value)
             {
                 nudkpflt.Value = 0;
                 nudkiflt.Value = 0;
